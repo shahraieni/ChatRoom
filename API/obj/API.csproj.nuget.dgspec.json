@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "d:\\Mehdi\\project\\ChatRoom\\ChatRoom\\API\\API.csproj": {}
+    "D:\\Mehdi\\project\\ChatRoom\\ChatRoom\\API\\API.csproj": {}
   },
   "projects": {
-    "d:\\Mehdi\\project\\ChatRoom\\ChatRoom\\API\\API.csproj": {
+    "D:\\Mehdi\\project\\ChatRoom\\ChatRoom\\API\\API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "d:\\Mehdi\\project\\ChatRoom\\ChatRoom\\API\\API.csproj",
+        "projectUniqueName": "D:\\Mehdi\\project\\ChatRoom\\ChatRoom\\API\\API.csproj",
         "projectName": "API",
-        "projectPath": "d:\\Mehdi\\project\\ChatRoom\\ChatRoom\\API\\API.csproj",
+        "projectPath": "D:\\Mehdi\\project\\ChatRoom\\ChatRoom\\API\\API.csproj",
         "packagesPath": "C:\\Users\\mahdi\\.nuget\\packages\\",
-        "outputPath": "d:\\Mehdi\\project\\ChatRoom\\ChatRoom\\API\\obj\\",
+        "outputPath": "D:\\Mehdi\\project\\ChatRoom\\ChatRoom\\API\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\mahdi\\AppData\\Roaming\\NuGet\\NuGet.Config",
