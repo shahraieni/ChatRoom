@@ -1,4 +1,6 @@
 using API.Data;
+using API.Interfases;
+using API.Servisce;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -33,7 +35,11 @@ namespace API
              services.AddDbContext<DataContext>(options=>{
                 options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
             });
+            //DEPANANSY INGCTIN
+            services.AddScoped<ITokenService,TokenService>();
+            
             services.AddControllers();
+            //Add cors origin
             services.AddCors();
             services.AddSwaggerGen(c =>
             {
