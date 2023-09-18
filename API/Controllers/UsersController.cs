@@ -1,7 +1,9 @@
+using System.Security.AccessControl;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using API.Data;
 using API.Entitis;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -19,6 +21,7 @@ namespace API.Controllers
             
         }
         [HttpGet]
+        [AllowAnonymous]
         public async Task<List<Users>> GetUsers()
         {
             return await _context.Users.ToListAsync();
@@ -26,6 +29,7 @@ namespace API.Controllers
         
 
         [HttpGet("{id:int}")]
+        [Authorize]
         public async Task<Users> GetUser(int id)
         {
             return await _context.Users.FirstOrDefaultAsync(x=>x.Id == id);
