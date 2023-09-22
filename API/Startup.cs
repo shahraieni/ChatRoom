@@ -19,6 +19,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Text;
+using API.extensions;
 
 namespace API
 {
@@ -34,37 +35,10 @@ namespace API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
-            //connect to database
-             services.AddDbContext<DataContext>(options=>{
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
-            });
-            //DEPANANSY INGCTIN
-            services.AddScoped<ITokenService,TokenService>();
-            
-            services.AddControllers();
+           services.AddApplicationService(Configuration);
             //Add Authentication
-            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-            .AddJwtBearer(option=>
-            {
-                option.TokenValidationParameters = new TokenValidationParameters
-                {
-                        ValidateIssuer = false,
-                        ValidateAudience = false,
-                        ValidateLifetime = true,
-                        ValidateIssuerSigningKey = true,
-                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Token:Key"]))
-
-
-                };
-
-            });
-            //Add cors origin
-            services.AddCors();
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "API", Version = "v1" });
-            });
+          
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
