@@ -1,3 +1,4 @@
+import { AccountService } from './../_services/account.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
@@ -8,14 +9,22 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 })
 export class NavComponent  implements OnInit{
 
-  constructor(){}
+  constructor(private accountService:AccountService){}
 
-  form = new FormGroup({
+    form = new FormGroup({
     userName : new FormControl('',[Validators.required,Validators.minLength(3),Validators.maxLength(20)]),
-    password :new FormControl('',[Validators.required , Validators.minLength(8),Validators.maxLength(15)])
+    password :new FormControl('',[Validators.required , Validators.minLength(5),Validators.maxLength(15)])
   })
   onSubmit(){
-console.log(this.form.value)
+    if(this.form.invalid){
+      this.form.markAllAsTouched();
+      return;
+    }
+    this.accountService.Login(this.form.getRawValue()).subscribe(
+      (user)=>{ console.log(user)},
+      (error)=> {console.log(error)}
+
+    );
   }
   ngOnInit(): void {
 
