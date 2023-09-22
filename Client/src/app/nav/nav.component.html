@@ -1,37 +1,51 @@
-<nav class="navbar navbar-expand-lg bg-light">
+<nav class="navbar navbar-expand-lg  navbar-dark bg-dark">
   <div class="container-fluid">
-    <a class="navbar-brand" href="#">chat App</a>
+    <a class="navbar-brand" href="#">Chat App</a>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarScroll">
       <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
         <li class="nav-item">
-          <a class="nav-link active" aria-current="page" href="#">Home</a>
+          <a class="nav-link" routerLinkActive="active" aria-current="page" routerLink="/">Home</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="#">Link</a>
         </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <li class="nav-item dropdown"  dropdown>
+          <a dropdownToggle  class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="true">
             Link
           </a>
-          <ul class="dropdown-menu">
+          <ul *dropdownMenu class="dropdown-menu">
             <li><a class="dropdown-item" href="#">Action</a></li>
             <li><a class="dropdown-item" href="#">Another action</a></li>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="#">Something else here</a></li>
           </ul>
+
         </li>
-        <li class="nav-item">
-          <a class="nav-link disabled">Link</a>
-        </li>
+        <!-- <li class="nav-item" *ngIf="loggedIn">
+          <a class="nav-link"(click)="logout()">Logout</a>
+          <button class="btn btn-outline-success" (click)="logout()" >Logout</button>
+        </li> -->
       </ul>
-      <form  (ngSubmit)="onSubmit()" class="d-flex" role="search"  [formGroup]="form">
+      <div  class="dropdown mr-10"   dropdown *ngIf="loggedIn" >
+        <a class="btn btn-secondary dropdown-toggle"  role="button" dropdownToggle id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false"> خوش آمدید</a>
+       <ul   *dropdownMenu class="dropdown-menu " aria-labelledby="dropdownMenuLink">
+            <li> <a class="dropdown-item">ویرایش پروفایل</a></li>
+            <li> <a class="dropdown-item" (click)="logout()"> خروج <span class="fas fa-sign-out-alt"></span></a> </li>
+      </ul>
+      </div>
+
+
+      <form *ngIf="!loggedIn"  (ngSubmit)="onSubmit()" class="d-flex" role="search"  [formGroup]="form">
         <input type="text" formControlName="userName"  class="form-control me-2"   placeholder="username">
-        <input type="text" formControlName="password"  class="form-control me-2"  placeholder="password">
+        <input type="password" formControlName="password"  class="form-control me-2"  placeholder="password">
         <button class="btn btn-outline-success me-2" type="submit" [disabled]="form.invalid">Login</button>
       </form>
     </div>
   </div>
 </nav>
+
+
+
