@@ -26,8 +26,8 @@ export class NavComponent  implements OnInit{
             return;
           }
           this.accountService.Login(this.form.getRawValue()).subscribe(
-            (user:any)=>{ console.log(user);
-              this.loggedIn = !!user;
+            (user)=>{ console.log(user);
+              this.loggedIn =true;
             },
             (error)=> {console.log(error);
               this.loggedIn = false;
