@@ -1,3 +1,11 @@
+:root{
+  --color-home:#F0FFF0 ;
+}
 .mr-10{
   margin-right: 39px;
+}
+
+.background-home{
+  background-color:var(--color-home) ;
+
 }
