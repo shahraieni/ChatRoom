@@ -1,0 +1,18 @@
+<div class="container mt-5 justify-content-center aline-items-center"  style="height:80vh ;">
+  <div   class="text-center" *ngIf="!RegisterMode">
+    <h1>Welcom to ChatRoom</h1>
+
+    <div class="text-center">
+      <button  class="btn btn-primary"  (click)="toggelRegisterMode()">Register</button>
+    </div>
+  </div>
+  <div *ngIf="RegisterMode" >
+
+    <div class="row justify-content-center">
+      <div class="col-4">
+        <app-register></app-register>
+      </div>
+    </div>
+
+  </div>
+</div>
