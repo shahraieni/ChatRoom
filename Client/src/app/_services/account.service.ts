@@ -8,11 +8,17 @@ export interface IRequstLogin{
   password:string;
 }
 
+export interface IRequstRegister{
+  userName:string;
+  password:string;
+}
+
 export interface User{
   userName:string;
   token:string
 
 }
+
 
 @Injectable({
   providedIn: 'root'
@@ -37,6 +43,20 @@ export class AccountService {
 
           })
         )
+      }
+
+      register(regester: IRequstRegister){
+        return this.http.post<User>(`${this.basUrl}/account/register`,regester).pipe(
+          map((respanse:User)=>{
+              if(respanse.userName && respanse.token){
+                localStorage.setItem('user',JSON.stringify(respanse))
+              }
+              this.currenUser.next(respanse)
+              return respanse;
+
+          })
+        )
+
       }
    SetcurrenUser(user:User){
       this.currenUser.next(user)
