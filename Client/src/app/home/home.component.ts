@@ -6,12 +6,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  RegisterMode = false;
+  registerMode = false;
   ngOnInit(): void { }
 
 
-  toggelRegisterMode(){
-      this.RegisterMode = !this.RegisterMode
+  toggleRegisterMode(){
+      this.registerMode = !this.registerMode
   }
 
 }
