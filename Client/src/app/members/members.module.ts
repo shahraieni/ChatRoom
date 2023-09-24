@@ -1,19 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HomeMembersComponent } from './home-members/home-members.component';
-import { DitaleMembersComponent } from './ditale-members/ditale-members.component';
-import { ListMembersComponent } from './list-members/list-members.component';
 
+import { MembersRoutingModule } from './members-routing.module';
 
 
 @NgModule({
-  declarations: [
-    HomeMembersComponent,
-    DitaleMembersComponent,
-    ListMembersComponent
-  ],
+  declarations: [],
   imports: [
-    CommonModule
+    CommonModule,
+    MembersRoutingModule
   ]
 })
 export class MembersModule { }
