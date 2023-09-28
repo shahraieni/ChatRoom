@@ -1,6 +1,7 @@
 import { AccountService } from './../_services/account.service';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -11,7 +12,7 @@ export class RegisterComponent  implements OnInit{
 
   @Output() close = new EventEmitter;
 
-  constructor(private  accountService:AccountService){}
+  constructor(private  accountService:AccountService, public router:Router){}
 
   form = new FormGroup({
     userName :new FormControl('',[Validators.required,Validators.minLength(3),Validators.maxLength(15)]),
@@ -20,9 +21,11 @@ export class RegisterComponent  implements OnInit{
   })
 
 onSubmit(){
-  this.accountService.register(this.form.getRawValue()).subscribe((user)=>
+  this.accountService.register(this.form.getRawValue()).subscribe(
+    (user)=>
   {
-  console.log(user);
+    this.router.navigateByUrl('/members')
+
   },(error)=>{
     console.log(error);
 

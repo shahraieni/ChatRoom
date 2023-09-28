@@ -1,6 +1,8 @@
 import { AccountService, User } from './../_services/account.service';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -12,7 +14,7 @@ export class NavComponent  implements OnInit{
 
         currenUser$:Observable<User>;
 
-        constructor(private accountService:AccountService){}
+        constructor(private accountService:AccountService, private router:Router , private toastr:ToastrService){}
 
         ngOnInit(): void {
 
@@ -28,7 +30,10 @@ export class NavComponent  implements OnInit{
             return;
           }
           this.accountService.Login(this.form.getRawValue()).subscribe(
-            (user)=>{ console.log(user);
+            (user)=>{
+
+              this.router.navigateByUrl("/members");
+              this.toastr.success("ورود با موفقیت انجام شد","موفقیت")
 
             },
             (error)=> {console.log(error);
@@ -40,6 +45,7 @@ export class NavComponent  implements OnInit{
         }
         logout(){
           this.accountService.logout();
+          this.router.navigateByUrl("/")
 
         }
 
