@@ -2,22 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, ReplaySubject } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { IRequstLogin, IRequstRegister, User } from '../_models/account';
 
-export interface IRequstLogin{
-  userName:string;
-  password:string;
-}
 
-export interface IRequstRegister{
-  userName:string;
-  password:string;
-}
-
-export interface User{
-  userName:string;
-  token:string
-
-}
 
 
 @Injectable({
