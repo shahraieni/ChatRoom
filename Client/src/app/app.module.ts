@@ -13,6 +13,7 @@ import { HomeComponent } from './home/home.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { ToastrModule } from 'ngx-toastr';
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -29,14 +30,12 @@ import { ToastrModule } from 'ngx-toastr';
     HttpClientModule,
     ReactiveFormsModule,
     ToastrModule.forRoot({
-      positionClass:"toast-bottom-right",
+      positionClass:'toast-bottom-right',
       timeOut:5000,
       progressBar:true,
-      progressAnimation:"increasing"
+
+      progressAnimation:'increasing'
     })
-
-
-
   ],
   providers: [],
   bootstrap: [AppComponent]
