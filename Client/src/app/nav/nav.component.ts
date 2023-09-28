@@ -46,6 +46,7 @@ export class NavComponent  implements OnInit{
         }
         logout(){
           this.accountService.logout();
+          this.toastr.info("خروج با موفقیت انجام شد","موفقیت")
           this.router.navigateByUrl("/")
 
         }

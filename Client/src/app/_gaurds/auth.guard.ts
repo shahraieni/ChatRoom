@@ -16,8 +16,8 @@ export class AuthGuard implements CanActivate {
       tak(1),
       map((user)=>{
         if(user) return true
-        this.toast.error('ابتدا باید وارد سایت شوید','خطا')
         this.router.navigateByUrl('/')
+        this.toast.error("ابتدا باید وارد سایت شوید","خطا")
         return false;
 
       }
