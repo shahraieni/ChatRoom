@@ -5,21 +5,25 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarScroll">
-      <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
-        <li class="nav-item">
-          <a class="nav-link" routerLinkActive="active" aria-current="page" routerLink="/">Home</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLinkActive="active" aria-current="page" routerLink="/members">Members</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLinkActive="active" aria-current="page" routerLink="/list">List</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLinkActive="active" aria-current="page" routerLink="/messages">Messages</a>
-        </li>
+      <ng-container *ngIf="(currenUser$ | async) as user" >
+        <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+          <li class="nav-item">
+            <a class="nav-link" [routerLinkActiveOptions]="{exact:true}"  routerLinkActive="active" aria-current="page" routerLink="/">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLinkActive="active" aria-current="page" routerLink="/members">Members</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLinkActive="active" aria-current="page" routerLink="/list">List</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" routerLinkActive="active" aria-current="page" routerLink="/messages">Messages</a>
+          </li>
 
-      </ul>
+        </ul>
+      </ng-container>
+
+
       <div  class="dropdown mr-10"   dropdown *ngIf="(currenUser$ | async) as User"  >
         <a class="btn btn-secondary dropdown-toggle"  role="button" dropdownToggle id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="falseخو">خوش امدید {{User.userName}} </a>
        <ul   *dropdownMenu class="dropdown-menu mr-10 " aria-labelledby="dropdownMenuLink" >

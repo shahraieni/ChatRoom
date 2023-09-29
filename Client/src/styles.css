@@ -2,7 +2,7 @@
 @import 'bootstrap/dist/css/bootstrap.min.css';
 @import "@fortawesome/fontawesome-free/css/all.min.css";
 @import url(../node_modules/ngx-toastr/toastr-old.css);
-@import url(../node_modules/bootswatch/dist/lumen/bootstrap.min.css);
+@import url(../node_modules/bootswatch/dist/pulse/bootstrap.min.css);
 @import './app/styles/beascss.css';
 
 

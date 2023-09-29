@@ -1,5 +1,11 @@
 :root{
   --color-home:rgb(176, 213, 238) ;
+  --font-body: "B Koodak", "JetBrains Mono";
+}
+body {
+  font-family: var(--font-body);
+  font-size: 100%;
+  font-weight: 400;
 }
 .mr-10{
   margin-right: 39px;

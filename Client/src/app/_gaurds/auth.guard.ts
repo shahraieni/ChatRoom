@@ -2,7 +2,8 @@ import { AccountService } from './../_services/account.service';
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, CanActivate, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { Observable, map } from 'rxjs';
+import { Observable } from 'rxjs';
+import {map, take} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -13,10 +14,10 @@ export class AuthGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean> | boolean | UrlTree {
     return this.AccountService.currenUser$.pipe(
-      tak(1),
+      take(1),
       map((user)=>{
-        if(user) return true
-        this.router.navigateByUrl('/')
+        if(user)
+        return true
         this.toast.error("ابتدا باید وارد سایت شوید","خطا")
         return false;
 

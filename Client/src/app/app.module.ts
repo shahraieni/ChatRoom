@@ -6,12 +6,12 @@ import {HttpClientModule} from '@angular/common/http';
 import {ReactiveFormsModule} from "@angular/forms";
 import { NavComponent } from './nav/nav.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 
 import { RegisterComponent } from './register/register.component';
 import { HomeComponent } from './home/home.component';
 import { NotFoundComponent } from './not-found/not-found.component';
-import { ToastrModule } from 'ngx-toastr';
+import { SharedModule } from './shared/shared.module';
+
 
 
 @NgModule({
@@ -24,18 +24,12 @@ import { ToastrModule } from 'ngx-toastr';
   ],
   imports: [
     BrowserAnimationsModule,
-    BsDropdownModule.forRoot(),
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-    ToastrModule.forRoot({
-      positionClass:'toast-bottom-right',
-      timeOut:5000,
-      progressBar:true,
+    SharedModule
 
-      progressAnimation:'increasing'
-    })
   ],
   providers: [],
   bootstrap: [AppComponent]
