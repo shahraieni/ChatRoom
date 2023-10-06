@@ -19,7 +19,7 @@ namespace API.Controllers
         public ActionResult GetNotFoundRequest()
         {
             var thing = _context.Users.Find(-1);
-            if (thing == null) return NotFound(new  ApiResponse(404));
+            if (thing == null) return NotFound();
             return Ok(thing);
         }
 
@@ -34,7 +34,7 @@ namespace API.Controllers
         [HttpGet("bad-request")]
         public ActionResult GetBadRequest()
         {
-            return BadRequest( new ApiResponse (401));
+            return BadRequest( );
         }
 
         [HttpGet("bad-request/{id}")]
