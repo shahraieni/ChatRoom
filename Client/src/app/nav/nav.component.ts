@@ -34,7 +34,7 @@ export class NavComponent  implements OnInit{
             (user)=>{
 
               this.router.navigateByUrl("/members");
-              this.toastr.success("ورود با موفقیت انجام شد","موفقیت")
+              this.toastr.success(" شما با موفقیت وارد حساب کاربری شدید ","موفقیت")
 
             },
             (error)=> {console.log(error);

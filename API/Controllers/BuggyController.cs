@@ -1,6 +1,6 @@
 using API.Controllers;
 using API.Data;
-
+using API.Errors;
 using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
@@ -19,28 +19,28 @@ namespace API.Controllers
         public ActionResult GetNotFoundRequest()
         {
             var thing = _context.Users.Find(-1);
-            if (thing == null) return NotFound();
+            if (thing == null) return NotFound(new  ApiResponse(404));
             return Ok(thing);
         }
 
-        // [HttpGet("server-error")]
-        // public ActionResult GetServerErrorRequest()
-        // {
-        //     var thing = _context.Users.Find(-1); //null
-        //     var thingToReturn = thing.ToString();
-        //     return Ok();
-        // }
+        [HttpGet("server-error")]
+        public ActionResult GetServerErrorRequest()
+        {
+            var thing = _context.Users.Find(-1); //null
+            var thingToReturn = thing.ToString();
+            return Ok();
+        }
 
-        // [HttpGet("bad-request")]
-        // public ActionResult GetBadRequest()
-        // {
-        //     return BadRequest(new ApiResponse(400, "خطایی رخ داده است"));
-        // }
+        [HttpGet("bad-request")]
+        public ActionResult GetBadRequest()
+        {
+            return BadRequest( new ApiResponse (401));
+        }
 
-        // [HttpGet("bad-request/{id}")]
-        // public ActionResult GetNotFoundRequest(int id)
-        // {
-        //     return Ok();
-        // }
+        [HttpGet("bad-request/{id}")]
+        public ActionResult GetNotFoundRequest(int id)
+        {
+            return Ok();
+        }
     }
 }
