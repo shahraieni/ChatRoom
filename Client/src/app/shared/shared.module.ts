@@ -11,7 +11,7 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
     CommonModule,
     BsDropdownModule.forRoot(),
     ToastrModule.forRoot({
-      positionClass:'toast-top-right',
+      positionClass:'toast-bottom-right',
       timeOut:5000,
       progressBar:true,
 
