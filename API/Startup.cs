@@ -21,6 +21,8 @@ using System.Threading.Tasks;
 using System.Text;
 using API.extensions;
 using API.Middlewares;
+using Microsoft.OpenApi.Validations;
+using API.Errors;
 
 namespace API
 {
@@ -37,7 +39,21 @@ namespace API
         public void ConfigureServices(IServiceCollection services)
         {
            services.AddApplicationService(Configuration);
-            //Add Authentication
+            services.Configure<ApiBehaviorOptions>(option=>
+                option.InvalidModelStateResponseFactory = actionContext =>
+                {
+                    var errors = actionContext.ModelState.Where(e=>e.Value.Errors.Count>0)
+                    .SelectMany(x=>x.Value.Errors)
+                    .Select(x=>x.ErrorMessage).ToArray();
+                    var errorResponse = new AipValidationErrorResponse
+                    {
+                        Errors = errors
+                    };
+
+                    return new BadRequestObjectResult(errorResponse);
+
+                });
+                
           
             
         }
