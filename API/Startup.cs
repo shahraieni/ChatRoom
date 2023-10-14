@@ -39,23 +39,7 @@ namespace API
         public void ConfigureServices(IServiceCollection services)
         {
            services.AddApplicationService(Configuration);
-            services.Configure<ApiBehaviorOptions>(option=>
-                option.InvalidModelStateResponseFactory = actionContext =>
-                {
-                    var errors = actionContext.ModelState.Where(e=>e.Value.Errors.Count>0)
-                    .SelectMany(x=>x.Value.Errors)
-                    .Select(x=>x.ErrorMessage).ToArray();
-                    var errorResponse = new AipValidationErrorResponse
-                    {
-                        Errors = errors
-                    };
-
-                    return new BadRequestObjectResult(errorResponse);
-
-                });
-                
-          
-            
+           
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
