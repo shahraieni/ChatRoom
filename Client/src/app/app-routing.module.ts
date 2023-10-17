@@ -1,3 +1,4 @@
+import { ErrorsComponent } from './errors/errors.component';
 import { AuthGuard } from './_gaurds/auth.guard';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
@@ -6,6 +7,8 @@ import { NotFoundComponent } from './not-found/not-found.component';
 
 const routes: Routes = [
   {path:"",component:HomeComponent},
+  {path:"error",component:ErrorsComponent},
+
 
   {path:'members',
   canActivate:[AuthGuard],

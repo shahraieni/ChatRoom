@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, ReplaySubject } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { IRequstLogin, IRequstRegister, User } from '../_models/account';
+import { environment } from 'src/environments/environment';
 
 
 
@@ -12,7 +13,7 @@ import { IRequstLogin, IRequstRegister, User } from '../_models/account';
 })
 export class AccountService {
 
-    private basUrl = 'https://localhost:5001/api';
+    private basUrl = environment.basUrl;
     private currenUser = new ReplaySubject<User>(1);
 
     currenUser$ = this.currenUser.asObservable();

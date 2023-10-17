@@ -11,6 +11,7 @@ import { RegisterComponent } from './register/register.component';
 import { HomeComponent } from './home/home.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { SharedModule } from './shared/shared.module';
+import { ErrorsComponent } from './errors/errors.component';
 
 
 
@@ -20,7 +21,8 @@ import { SharedModule } from './shared/shared.module';
     NavComponent,
     HomeComponent,
     RegisterComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    ErrorsComponent
   ],
   imports: [
     BrowserAnimationsModule,
