@@ -37,7 +37,10 @@ export class NavComponent  implements OnInit{
               this.toastr.success(" شما با موفقیت وارد حساب کاربری شدید ","موفقیت")
 
             },
-            (error)=> {console.log(error);
+            (error:any)=> {
+
+              console.log(error);
+              this.toastr.error(error.error.message)
 
             }
 
