@@ -4,3 +4,10 @@
 <button (click)=" getServerError()"  >getServerError</button>
 <button (click)="getVlidtorError()"  >getVlidtorError</button>
 <button (click)="getValidationErrorRegister()"  >getValidationErrorRegister</button>
+<div class="row mt-5"  *ngIf="validError.length>0">
+  <ul class="text-danger">
+    <li  *ngFor="let error of validError">
+      {{error}}
+    </li>
+  </ul>
+</div>

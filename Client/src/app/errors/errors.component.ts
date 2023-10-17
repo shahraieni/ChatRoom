@@ -10,15 +10,16 @@ import { environment } from 'src/environments/environment';
 export class ErrorsComponent {
 
   constructor(  private http: HttpClient){}
-  private baseurl = environment.basUrl
+  private baseurl = environment.basUrl;
+  validError:string[]=[];
 
   getNotfound(){
 
     return this.http.get(this.baseurl + '/Buggy/not-found').subscribe(respanse=>{
-      console.log(respanse);
+     // console.log(respanse);
 
     },(error)=>{
-      console.log(error);
+      //console.log(error);
 
     });
 
@@ -27,10 +28,10 @@ export class ErrorsComponent {
   getServerError(){
 
     return this.http.get(this.baseurl + '/Buggy/server-error').subscribe(respanse=>{
-      console.log(respanse);
+     // console.log(respanse);
 
     },(error)=>{
-      console.log(error);
+     // console.log(error);
 
     });
 
@@ -38,10 +39,10 @@ export class ErrorsComponent {
   getBadrequst(){
 
     return this.http.get(this.baseurl + '/Buggy/bad-request').subscribe(respanse=>{
-      console.log(respanse);
+      //console.log(respanse);
 
     },(error)=>{
-      console.log(error);
+      //console.log(error);
 
     });
 
@@ -49,10 +50,10 @@ export class ErrorsComponent {
   getVlidtorError(){
 
     return this.http.get(this.baseurl + '/Buggy/not-found/one').subscribe(respanse=>{
-      console.log(respanse);
+      //console.log(respanse);
 
     },(error)=>{
-      console.log(error);
+      //console.log(error);
 
     });
 
@@ -60,10 +61,11 @@ export class ErrorsComponent {
   getValidationErrorRegister() {
     return this.http.post(`${this.baseurl}/account/register`, {}).subscribe(
       (response) => {
-         console.log(response);
+       //  console.log(response);
       },
       (error) => {
-        console.log(error);
+       // console.log(error.error.errors);
+        this.validError=error.error.errors
       }
     );
   }

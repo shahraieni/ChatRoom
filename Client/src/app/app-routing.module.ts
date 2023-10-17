@@ -1,6 +1,6 @@
 import { ErrorsComponent } from './errors/errors.component';
 import { AuthGuard } from './_gaurds/auth.guard';
-import { NgModule } from '@angular/core';
+import { NgModule, Component } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { NotFoundComponent } from './not-found/not-found.component';
@@ -22,6 +22,7 @@ const routes: Routes = [
   canActivate:[AuthGuard],
   loadChildren:()=>
   import('./messages/messages.module').then((x)=>x.MessagesModule)},
+  {path :"Not-Found",component:NotFoundComponent},
   {path:"**",component:NotFoundComponent}
 ];
 
