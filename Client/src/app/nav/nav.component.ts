@@ -37,12 +37,12 @@ export class NavComponent  implements OnInit{
               this.toastr.success(" شما با موفقیت وارد حساب کاربری شدید ","موفقیت")
 
             },
-            (error:any)=> {
+            // (error:any)=> {
 
-              console.log(error);
-              this.toastr.error(error.error.message)
+            //   console.log(error);
+            //   this.toastr.error(error.error.message)
 
-            }
+            // }
 
           );
 

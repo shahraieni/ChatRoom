@@ -16,33 +16,22 @@ export class ErrorsComponent {
   getNotfound(){
 
     return this.http.get(this.baseurl + '/Buggy/not-found').subscribe(respanse=>{
-     // console.log(respanse);
-
     },(error)=>{
-      //console.log(error);
-
     });
-
   }
-
   getServerError(){
 
     return this.http.get(this.baseurl + '/Buggy/server-error').subscribe(respanse=>{
-     // console.log(respanse);
 
     },(error)=>{
-     // console.log(error);
 
     });
 
   }
   getBadrequst(){
-
     return this.http.get(this.baseurl + '/Buggy/bad-request').subscribe(respanse=>{
-      //console.log(respanse);
 
     },(error)=>{
-      //console.log(error);
 
     });
 
@@ -50,10 +39,8 @@ export class ErrorsComponent {
   getVlidtorError(){
 
     return this.http.get(this.baseurl + '/Buggy/not-found/one').subscribe(respanse=>{
-      //console.log(respanse);
 
     },(error)=>{
-      //console.log(error);
 
     });
 
@@ -61,11 +48,11 @@ export class ErrorsComponent {
   getValidationErrorRegister() {
     return this.http.post(`${this.baseurl}/account/register`, {}).subscribe(
       (response) => {
-       //  console.log(response);
       },
       (error) => {
-       // console.log(error.error.errors);
-        this.validError=error.error.errors
+
+       console.log(error);
+        this.validError=error
       }
     );
   }
