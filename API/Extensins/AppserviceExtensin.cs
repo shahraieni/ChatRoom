@@ -2,6 +2,7 @@ using System.Linq;
 using API.Data;
 using API.Errors;
 using API.Extensins;
+using API.Interfaces;
 using API.Interfases;
 using API.Servisce;
 using Microsoft.AspNetCore.Mvc;
@@ -19,6 +20,7 @@ namespace API.extensions
         {
              //DEPANANSY INGCTIN
             services.AddScoped<ITokenService,TokenService>();
+            services.AddScoped<IUserRepository , UserRepository>();
              //connect to database
              services.AddDbContext<DataContext>(options=>{
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));

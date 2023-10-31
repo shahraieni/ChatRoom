@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using API.Errors;
 using API.Data.Migrations;
+using API.Interfaces;
 
 namespace API.Controllers
 
@@ -16,12 +17,14 @@ namespace API.Controllers
      
     public class UsersController : BaseApiController
     {
-        private readonly DataContext _context;
-        public UsersController(DataContext context)
+       private readonly IUserRepository _UserRepository;
+
+        public UsersController(IUserRepository userRepository)
         {
-            _context = context;
-            
+            _UserRepository = userRepository;
         }
+
+
         [HttpGet]
         [AllowAnonymous]
         public async Task<List<Users>> GetUsers()
