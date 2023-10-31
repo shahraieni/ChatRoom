@@ -14,6 +14,7 @@ namespace API.Servisce
         {
             _context = context;
         }
+        
 
 
         public Task<IEnumerable<Users>> GetAllUsers()
