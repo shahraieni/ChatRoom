@@ -10,7 +10,7 @@ namespace API.Interfaces
         void Update(Users user);
         Task<IEnumerable<Users>> GetAllUsers();
         Task<Users> GetUserById(int id);
-       Task<Users> GetUserByUserName(string userName);
+        Task<Users> GetUserByUserName(string userName);
         Task<bool> SaveAllAsync();
     }
 }

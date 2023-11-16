@@ -27,9 +27,9 @@ namespace API.Controllers
 
         [HttpGet]
         [AllowAnonymous]
-        public async Task<List<Users>> GetUsers()
+        public async Task<IEnumerable<Users>> GetUsers()
         {
-            return await _context.Users.ToListAsync();
+            return await _UserRepository.GetAllUsers();
         }
         
 
@@ -37,7 +37,7 @@ namespace API.Controllers
         //[Authorize]
         public async Task<ActionResult<Users>> GetUser(int id)
         {
-             var user =  await _context.Users.FirstOrDefaultAsync(x=>x.Id == id);
+             var user =  await _UserRepository.GetUserById(id);
              if(user == null)
              
                 return BadRequest(new ApiResponse(400,"نام کاربری یافت نشد"));

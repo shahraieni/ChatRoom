@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using API.Data;
 using API.Entitis;
 using API.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace API.Servisce
 {
@@ -17,29 +18,30 @@ namespace API.Servisce
         
 
 
-        public Task<IEnumerable<Users>> GetAllUsers()
+        public  async Task<IEnumerable<Users>> GetAllUsers()
         {
-            throw new System.NotImplementedException();
+            return   await  _context.Users.ToListAsync();
         }
 
-        public Task<Users> GetUserById(int id)
+        public async  Task<Users> GetUserById(int id)
         {
-            throw new System.NotImplementedException();
+            return await  _context.Users.FindAsync(id);
         }
 
-        public Task<Users> GetUserByUserName(string userName)
+        public  async Task<Users> GetUserByUserName(string userName)
         {
-            throw new System.NotImplementedException();
+            return await  _context.Users.
+            SingleOrDefaultAsync(x=>x.UserName.ToLower() == userName.ToLower());
         }
 
-        public Task<bool> SaveAllAsync()
+        public  async Task<bool> SaveAllAsync()
         {
-            throw new System.NotImplementedException();
+             return await  _context.SaveChangesAsync()>0;
         }
 
         public void Update(Users user)
         {
-            throw new System.NotImplementedException();
+            _context.Entry(user).State = EntityState.Modified;
         }
 
     }
