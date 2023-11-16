@@ -9,6 +9,8 @@ using Microsoft.EntityFrameworkCore;
 using API.Errors;
 using API.Data.Migrations;
 using API.Interfaces;
+using System.Linq;
+using API.models;
 
 namespace API.Controllers
 
@@ -27,9 +29,13 @@ namespace API.Controllers
 
         [HttpGet]
         [AllowAnonymous]
-        public async Task<IEnumerable<Users>> GetUsers()
+        public async Task<IEnumerable<memberDto>> GetUsers()
         {
-            return await _UserRepository.GetAllUsers();
+            var users = await _UserRepository.GetAllUsers();
+
+             return users.Select(x=> new memberDto(){
+
+            });
         }
         
 
