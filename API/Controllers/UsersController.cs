@@ -35,8 +35,9 @@ namespace API.Controllers
         [AllowAnonymous]
         public async Task<ActionResult<IEnumerable<MemberDto>>> GetUsers()
         {
-            var users = await _UserRepository.GetAllUsers();
-            return Ok(_mapper.Map<IEnumerable<MemberDto>>(users));
+            
+           
+            return Ok(await _UserRepository.GetAllUsersMemberDto());
 
             
         }

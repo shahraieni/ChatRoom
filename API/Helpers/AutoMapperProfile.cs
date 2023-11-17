@@ -1,3 +1,4 @@
+using System.Linq;
 using API.Entitis;
 using API.models;
 using AutoMapper;
@@ -8,7 +9,10 @@ namespace API.Helpers
     {
         public AutoMapperProfile()
         {
-            CreateMap<Users ,MemberDto>();
+            CreateMap<Users ,MemberDto>()
+            .ForMember(x=>x.PhotoURL , C=>C.MapFrom(V=>V.Photos.FirstOrDefault(B=>B.IsMain).Url));
+
+            CreateMap<Photo , PhotoDto>();
         }
         
     }

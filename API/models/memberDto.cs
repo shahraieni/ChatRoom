@@ -16,7 +16,7 @@ namespace API.models
         public string KnowAs { get; set; }
         public string City { get; set; }
         public string Contry { get; set; }
-        public string PhotoUrlMail { get; set; }
+        public string PhotoURL { get; set; }
         public ICollection<PhotoDto> Photos { get; set; }
         //get age
          public int GetAge()

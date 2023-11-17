@@ -3,6 +3,9 @@ using System.Threading.Tasks;
 using API.Data;
 using API.Entitis;
 using API.Interfaces;
+using API.models;
+using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
 
 namespace API.Servisce
@@ -10,17 +13,24 @@ namespace API.Servisce
     public class UserRepository : IUserRepository
     {
         private readonly DataContext _context;
+        private readonly IMapper _mapper;
 
-        public UserRepository(DataContext context)
+        public UserRepository(DataContext context, IMapper mapper)
         {
             _context = context;
+            _mapper = mapper;
         }
-        
+
 
 
         public  async Task<IEnumerable<Users>> GetAllUsers()
         {
             return   await  _context.Users.ToListAsync();
+        }
+
+        public async Task<IEnumerable<MemberDto>> GetAllUsersMemberDto()
+        {
+            return  await  _context.Users.ProjectTo<MemberDto>(_mapper.ConfigurationProvider).ToListAsync();
         }
 
         public async  Task<Users> GetUserById(int id)
