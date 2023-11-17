@@ -2,6 +2,7 @@ using System.Linq;
 using API.Data;
 using API.Errors;
 using API.Extensins;
+using API.Helpers;
 using API.Interfaces;
 using API.Interfases;
 using API.Servisce;
@@ -21,6 +22,7 @@ namespace API.extensions
              //DEPANANSY INGCTIN
             services.AddScoped<ITokenService,TokenService>();
             services.AddScoped<IUserRepository , UserRepository>();
+            services.AddAutoMapper(typeof(AutoMapperProfile).Assembly);
              //connect to database
              services.AddDbContext<DataContext>(options=>{
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));

@@ -4,7 +4,7 @@ using API.Extensins;
 
 namespace API.models
 {
-    public class memberDto
+    public class MemberDto
     {
         
         public int Id { get; set; }
@@ -16,6 +16,7 @@ namespace API.models
         public string KnowAs { get; set; }
         public string City { get; set; }
         public string Contry { get; set; }
+        public string PhotoUrlMail { get; set; }
         public ICollection<PhotoDto> Photos { get; set; }
         //get age
          public int GetAge()

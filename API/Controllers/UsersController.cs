@@ -11,6 +11,7 @@ using API.Data.Migrations;
 using API.Interfaces;
 using System.Linq;
 using API.models;
+using AutoMapper;
 
 namespace API.Controllers
 
@@ -20,22 +21,24 @@ namespace API.Controllers
     public class UsersController : BaseApiController
     {
        private readonly IUserRepository _UserRepository;
+       private readonly IMapper _mapper;
 
-        public UsersController(IUserRepository userRepository)
+        public UsersController(IUserRepository userRepository, IMapper mapper)
         {
             _UserRepository = userRepository;
+            _mapper = mapper;
+
         }
 
 
         [HttpGet]
         [AllowAnonymous]
-        public async Task<IEnumerable<memberDto>> GetUsers()
+        public async Task<ActionResult<IEnumerable<MemberDto>>> GetUsers()
         {
             var users = await _UserRepository.GetAllUsers();
+            return Ok(_mapper.Map<IEnumerable<MemberDto>>(users));
 
-             return users.Select(x=> new memberDto(){
-
-            });
+            
         }
         
 
