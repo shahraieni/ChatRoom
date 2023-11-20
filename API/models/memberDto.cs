@@ -17,12 +17,10 @@ namespace API.models
         public string City { get; set; }
         public string Contry { get; set; }
         public string PhotoURL { get; set; }
+        public int Age { get; set; }
         public ICollection<PhotoDto> Photos { get; set; }
         //get age
-         public int GetAge()
-        {
-            return Birthday.calculatAge();
-        }
+        
     }
         
     

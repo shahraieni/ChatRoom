@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using API.Data;
 using API.Entitis;
@@ -31,6 +32,19 @@ namespace API.Servisce
         public async Task<IEnumerable<MemberDto>> GetAllUsersMemberDto()
         {
             return  await  _context.Users.ProjectTo<MemberDto>(_mapper.ConfigurationProvider).ToListAsync();
+        }
+
+        public async  Task<MemberDto> GetMemberDtoById(int userId)
+        {
+            return  await  _context.Users.ProjectTo<MemberDto>(_mapper.ConfigurationProvider)
+            .SingleOrDefaultAsync(x=>x.Id == userId);
+
+        }
+
+        public   async Task<MemberDto> GetMemberDtoByUserName(string userName)
+        {
+             return  await  _context.Users.ProjectTo<MemberDto>(_mapper.ConfigurationProvider)
+            .SingleOrDefaultAsync(x=>x.UserName.ToLower() == userName.ToLower());
         }
 
         public async  Task<Users> GetUserById(int id)
