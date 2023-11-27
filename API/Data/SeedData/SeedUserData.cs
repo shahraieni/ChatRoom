@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Security.Cryptography;
@@ -6,13 +7,17 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using API.Entitis;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 namespace API.Data.SeedData
 {
     public class SeedUserData
     {
-        public static async Task SeetUser(DataContext context){
+        public static async Task SeetUser(DataContext context,ILoggerFactory logger){
 
+            try
+            {
+                
             if( !await context.Users.AnyAsync())
             {
                 var userData= await File.ReadAllTextAsync("Data/SeedData/UserSeedData.json");
@@ -29,6 +34,15 @@ namespace API.Data.SeedData
                     await context.Users.AddRangeAsync(users);
                     await context.SaveChangesAsync();
             }
+            }
+            catch (Exception ex)
+            {
+                
+                 var log = logger.CreateLogger<SeedUserData>();
+                log.LogError(ex.Message);
+               
+            }
+
         }
     }
 }
