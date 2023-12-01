@@ -35,16 +35,11 @@ namespace API.Controllers
         [AllowAnonymous]
         public async Task<ActionResult<IEnumerable<MemberDto>>> GetUsers()
         {
-            
-           
-            return Ok(await _UserRepository.GetAllUsersMemberDto());
-
-            
+            return Ok(await _UserRepository.GetAllUsersMemberDto());   
         }
-        
-
+    
         [HttpGet("GetUserById/{id:int}")]
-        //[Authorize]
+        [Authorize]
         public async Task<ActionResult<MemberDto>> GetUserById(int id)
 
         {
@@ -54,7 +49,7 @@ namespace API.Controllers
         }
 
          [HttpGet("GetUserByUserName/{userName}")]
-        //[Authorize]
+        [Authorize]
         public async Task<ActionResult<MemberDto>> GetUserByUsrName(string userName)
 
         {
