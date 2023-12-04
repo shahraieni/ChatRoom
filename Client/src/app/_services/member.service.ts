@@ -14,7 +14,9 @@ private BaseUrl = environment.basUrl;
   constructor(private http: HttpClient) { }
 
   getMembers(){
-    return this.http.get<IMember[]>(`${this.BaseUrl}/users`)
+    return    this.http.get<IMember[]>(`${this.BaseUrl}/Users`);
+   // return this.http.get<IMember>(`${this.baseUrl}/users`);
+
   }
   getMemberByUserName(userName:String){
     return this.http.get<IMember>(`${this.BaseUrl}/users/getUserByUserName/${userName}`,{headers:HttpHeader})
@@ -24,5 +26,6 @@ private BaseUrl = environment.basUrl;
     return this.http.get<IMember>(`${this.BaseUrl}/users/getUserUserById/${id}`,{headers:HttpHeader})
 
   }
+
 }
 
