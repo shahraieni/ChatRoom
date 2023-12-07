@@ -26,12 +26,18 @@ export class AuthInterceptor implements HttpInterceptor {
       'Bearer ' + this.currnUser.token)
     })
     }
-    return next.handle(request).pipe(tap((evant)=>{
-      if(evant.type === HttpEventType.Sent){
+    return next.handle(request).pipe(tap((event)=>{
+      console.log(event)
+      if(event.type === HttpEventType.Sent){
         console.log("reguest sent")
       }
-      if(evant.type === HttpEventType.Response){
+      if(event.type === HttpEventType.Response){
         console.log("Response")
+        const token = event?.body?.token;
+
+        if(token){
+          localStorage.setItem('user' , JSON.stringify(event.body))
+        }
       }
 
     }));

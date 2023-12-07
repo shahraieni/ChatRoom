@@ -17,7 +17,7 @@ Members : IMember[]= [];
 
   lodMember(){
     this.memberservice.getMembers().subscribe(members=>{
-      debugger
+
           this.Members = members
 
     });

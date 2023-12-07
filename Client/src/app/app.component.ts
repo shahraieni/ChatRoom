@@ -19,6 +19,6 @@ export class AppComponent  implements OnInit {
 
   SetCurrenUser(){
     const user:User = JSON.parse(localStorage.getItem('user'));
-    this.accountService.SetcurrenUser(user);
+    (user)?this.accountService.SetcurrenUser(user):this.accountService.SetcurrenUser(null)
   }
 }
