@@ -1,5 +1,7 @@
+import { MemberService } from './../../_services/member.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { IMember } from 'src/app/_models/Member';
 
 @Component({
   selector: 'app-ditale-members',
@@ -8,9 +10,10 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class DitaleMembersComponent  implements OnInit {
 
+  member:IMember;
   constructor(private route:ActivatedRoute){}
   ngOnInit(): void {
-   console.log(this.route?.snapshot?.params['username'])
+    this.member = this.route.snapshot.data['member'] as IMember
   }
 
 }
