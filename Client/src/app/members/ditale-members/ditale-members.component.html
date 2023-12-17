@@ -41,8 +41,13 @@
           <p> Description</p>
           <p>{{ member.knowAs }}</p>
         </tab>
-        <tab   heading="images"  class="mt-3 p-2" heading="Photos">
-                <p>imagees</p>
+        <tab    class="mt-3 p-2" heading="Photos">
+
+          <ngx-gallery
+          [options]="galleryOptions"
+          [images]="galleryImages"
+          class="ngx-gallery d-inline-block mb-5"
+        ></ngx-gallery>
         </tab>
         <tab heading="Messages" class="mt-3 p-2" >
           <p>Messages</p>
