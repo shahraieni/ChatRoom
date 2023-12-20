@@ -8,25 +8,24 @@ import {
   HttpHeaders,
   HttpEventType
 } from '@angular/common/http';
-import { Observable, take, tap } from 'rxjs';
+import { Observable, exhaustMap, take, tap } from 'rxjs';
 import { User } from '../_models/account';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
-  currnUser:User;
+
   constructor(private accountService:AccountService) {}
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
-    this.accountService.currenUser$.pipe(take(1)).subscribe((user)=>{
-      this.currnUser = user;
+   return this.accountService.currenUser$.pipe(take(1),exhaustMap((user)=>{
+      if(user){
+        request = request.clone({headers : new HttpHeaders().set('Authorization',
+        'Bearer ' +user.token)
+      })
 
-    });
-    if(this.currnUser){
-      request = request.clone({headers : new HttpHeaders().set('Authorization',
-      'Bearer ' + this.currnUser.token)
-    })
-    }
-    return next.handle(request).pipe(tap((event)=>{
+      }
+      return next.handle(request);
+    }),  tap((event)=>{
       console.log(event)
       if(event.type === HttpEventType.Sent){
         console.log("reguest sent")
@@ -40,6 +39,7 @@ export class AuthInterceptor implements HttpInterceptor {
         }
       }
 
-    }));
+    })
+    )
   }
 }
