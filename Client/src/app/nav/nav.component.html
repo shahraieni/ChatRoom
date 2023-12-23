@@ -30,7 +30,7 @@
       <div  class="dropdown mr-10"   dropdown *ngIf="(currenUser$ | async) as User"  >
         <a class="btn btn-secondary dropdown-toggle"  role="button" dropdownToggle id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="falseخو">  {{User.userName}} </a>
        <ul   *dropdownMenu class="dropdown-menu mr-10 " aria-labelledby="dropdownMenuLink" >
-            <li> <a class="dropdown-item">ویرایش پروفایل</a></li>
+          <li> <a class="dropdown-item"  routerLink="members/edit" >ویرایش پروفایل</a></li>
             <li> <a class="dropdown-item" (click)="logout()"> خروج <span class="fas fa-sign-out-alt"></span></a> </li>
       </ul>
       </div>

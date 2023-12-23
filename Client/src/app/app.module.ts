@@ -14,7 +14,7 @@ import { SharedModule } from './shared/shared.module';
 import { ErrorsComponent } from './errors/errors.component';
 import { ErrorInterceptor } from './_interceptors/error.interceptor';
 import { AuthInterceptor } from './_interceptors/auth.interceptor';
-import { EditMemberComponent } from './member/edit-member/edit-member.component';
+
 
 
 
@@ -26,7 +26,7 @@ import { EditMemberComponent } from './member/edit-member/edit-member.component'
     RegisterComponent,
     NotFoundComponent,
     ErrorsComponent,
-    EditMemberComponent
+
   ],
   imports: [
     BrowserAnimationsModule,

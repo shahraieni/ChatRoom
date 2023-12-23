@@ -17,6 +17,7 @@ export class DitaleMembersComponent  implements OnInit {
   ngOnInit(): void {
     this.loademember();
     this.loadOptions();
+
   }
   loademember(){
     this.route.data.subscribe((data)=>{

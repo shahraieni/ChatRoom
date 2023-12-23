@@ -10,7 +10,7 @@ const routes: Routes = [
   {path:"",component:HomeMembersComponent,children:
   [
     { path :"",component:ListMembersComponent},
-    { path :"edit",component:EditMemberComponent},
+    { path :"edit",component:EditMemberComponent,pathMatch:'full'},
     { path :":username",component:DitaleMembersComponent,resolve:{member:GetMemberResolver}},
   ]}
 ];
