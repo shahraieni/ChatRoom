@@ -20,6 +20,7 @@ export class EditMemberComponent  implements OnInit{
   constructor(private accontservice: AccountService , private memberservice:MemberService ){}
 
   ngOnInit(): void {
+
     this.loadeUser();
     this.loadeMember();
   }

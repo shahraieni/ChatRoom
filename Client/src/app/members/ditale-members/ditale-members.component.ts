@@ -20,6 +20,7 @@ export class DitaleMembersComponent  implements OnInit {
 
   }
   loademember(){
+
     this.route.data.subscribe((data)=>{
       this.member = data['member'] as IMember;
       this.galleryImages = this.getimage();
