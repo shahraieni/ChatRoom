@@ -20,7 +20,7 @@ namespace API.models
         public int Gender { get; set; }
         public int Age { get; set; }
         public DateTime LastActive { get; set; }
-        public DateTime DateOfBirth { get; set; }
+        public string DateOfBirth { get; set; }
         public DateTime Created { get; set; }
         public ICollection<PhotoDto> Photos { get; set; }
         

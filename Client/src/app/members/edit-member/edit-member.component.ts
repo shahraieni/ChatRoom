@@ -24,6 +24,10 @@ export class EditMemberComponent  implements OnInit{
     this.loadeUser();
     this.loadeMember();
   }
+
+  onsubmit(){
+    console.log(this.form.value)
+  }
     loadeMember(){
       this.memberservice.getMemberByUserName(this.user.userName).subscribe(member=>{
         this.member = member;
@@ -31,8 +35,11 @@ export class EditMemberComponent  implements OnInit{
           city : new FormControl(member.city),
           country: new FormControl(member.country),
           knowAs:new FormControl(member.knownAs),
-          dateOfBirth:new FormControl(member.dateOfBirth)
-
+          dateOfBirth:new FormControl(member.dateOfBirth),
+          email:new FormControl(member.email),
+          interests:  new FormControl(member.interests),
+          lookingFor: new FormControl(member.lookingFor),
+          introduction:new FormControl(member.introduction)
 
         })
       })
