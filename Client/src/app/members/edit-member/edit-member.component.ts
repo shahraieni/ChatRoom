@@ -29,9 +29,9 @@ export class EditMemberComponent  implements OnInit{
         this.member = member;
         this.form =new FormGroup({
           city : new FormControl(member.city),
-          country: new FormControl(member.contry),
-          knowAs:new FormControl(member.knowAs),
-          birthday:new FormControl(member.birthday)
+          country: new FormControl(member.country),
+          knowAs:new FormControl(member.knownAs),
+          dateOfBirth:new FormControl(member.dateOfBirth)
 
 
         })
