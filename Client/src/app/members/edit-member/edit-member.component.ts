@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { IPeriventUnSavechanges } from 'src/app/_gaurds/periventon-savechanges.guard';
 import { IMember } from 'src/app/_models/Member';
 import { User } from 'src/app/_models/account';
 import { AccountService } from 'src/app/_services/account.service';
@@ -10,7 +12,7 @@ import { MemberService } from 'src/app/_services/member.service';
   templateUrl: './edit-member.component.html',
   styleUrls: ['./edit-member.component.css']
 })
-export class EditMemberComponent  implements OnInit{
+export class EditMemberComponent  implements OnInit , IPeriventUnSavechanges{
 
   user:User;
   member:IMember;
@@ -18,6 +20,9 @@ export class EditMemberComponent  implements OnInit{
   form:FormGroup
 
   constructor(private accontservice: AccountService , private memberservice:MemberService ){}
+  canActivate(): boolean | Observable<boolean> {
+   return this.form.dirty ? confirm("تغییرات را ذخیره نکرده اید ایا میخواهید خارج شوید؟"):true
+  }
 
   ngOnInit(): void {
 

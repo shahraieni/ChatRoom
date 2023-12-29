@@ -1,17 +1,22 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanDeactivate, RouterStateSnapshot, UrlTree } from '@angular/router';
+import { ActivatedRouteSnapshot, CanDeactivate, RouterStateSnapshot, UrlTree, CanActivate } from '@angular/router';
 import { Observable } from 'rxjs';
+
+export interface IPeriventUnSavechanges{
+  canActivate():Observable<boolean> | boolean
+}
 
 @Injectable({
   providedIn: 'root'
 })
-export class PeriventonSavechangesGuard implements CanDeactivate<unknown> {
+export class PeriventonSavechangesGuard implements CanDeactivate<IPeriventUnSavechanges> {
   canDeactivate(
-    component: unknown,
+    component: IPeriventUnSavechanges,
     currentRoute: ActivatedRouteSnapshot,
     currentState: RouterStateSnapshot,
-    nextState?: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    return true;
+    nextState?: RouterStateSnapshot):
+     Observable<boolean> | boolean {
+    return component.canActivate();
   }
   
 }

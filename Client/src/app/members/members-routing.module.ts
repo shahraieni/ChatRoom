@@ -1,3 +1,4 @@
+import { PeriventonSavechangesGuard } from './../_gaurds/periventon-savechanges.guard';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeMembersComponent } from './home-members/home-members.component';
@@ -10,7 +11,7 @@ const routes: Routes = [
   {path:"",component:HomeMembersComponent,children:
   [
     { path :"",component:ListMembersComponent},
-    { path :"edit",component:EditMemberComponent,pathMatch:'full'},
+    { path :"edit",component:EditMemberComponent,pathMatch:'full',canDeactivate:[PeriventonSavechangesGuard]},
     { path :":username",component:DitaleMembersComponent,resolve:{member:GetMemberResolver}},
   ]}
 ];
