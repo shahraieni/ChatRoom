@@ -12,6 +12,8 @@ using API.Interfaces;
 using System.Linq;
 using API.models;
 using AutoMapper;
+using Microsoft.VisualBasic;
+using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
 
 namespace API.Controllers
 
@@ -31,7 +33,7 @@ namespace API.Controllers
         }
 
 
-        [HttpGet]
+        [HttpGet("GetAllUsers")]
        [Authorize]
         public async Task<ActionResult<IEnumerable<MemberDto>>> GetUsers()
         {
@@ -56,6 +58,19 @@ namespace API.Controllers
             var user = await  _UserRepository.GetMemberDtoByUserName(userName);
             if(user==null) return NotFound(new ApiResponse(404 , "چنین کاربری یافت نشد"));
             return Ok(user);
+        }
+        [HttpPut("UpdateUser")]
+        [Authorize]
+        public async Task<ActionResult<MemberDto>> UpdateUser(MemberUpdateDto memberDto)
+        {
+           var username = HttpContext.User.FindFirst("nameid")?.Value;
+           var member = await _UserRepository.GetMemberDtoByUserName(username);
+           if(member == null) return NotFound(new ApiResponse(404));
+           member = _mapper.Map(memberDto, member);
+          // _UserRepository.Update(member);
+           if(await _UserRepository.SaveAllAsync())
+           return Ok(_mapper.Map<MemberDto>(member));
+           return BadRequest(new ApiResponse(400));
         }
     }
 }

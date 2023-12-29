@@ -15,6 +15,8 @@ namespace API.Helpers
             .ForMember(x=>x.PhotoUrl , C=>C.MapFrom(V=>V.Photos.FirstOrDefault(B=>B.IsMain).Url));
 
             CreateMap<Photo , PhotoDto>();
+             CreateMap<MemberUpdateDto , Users>();
+
         }
         
     }

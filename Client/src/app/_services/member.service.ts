@@ -13,7 +13,7 @@ private BaseUrl = environment.basUrl;
   constructor(private http: HttpClient) { }
 
   getMembers(){
-    return    this.http.get<IMember[]>(`${this.BaseUrl}/Users`);
+    return    this.http.get<IMember[]>(`${this.BaseUrl}/Users/GetAllUsers`);
    // return this.http.get<IMember>(`${this.baseUrl}/users`);
 
   }
@@ -24,6 +24,9 @@ private BaseUrl = environment.basUrl;
   getMemberById(id:number){
     return this.http.get<IMember>(`${this.BaseUrl}/users/getUserUserById/${id}`)
 
+  }
+  updatemember(){
+    
   }
 
 }
