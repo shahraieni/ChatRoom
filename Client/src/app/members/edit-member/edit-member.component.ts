@@ -13,6 +13,7 @@ import { MemberService } from 'src/app/_services/member.service';
   styleUrls: ['./edit-member.component.css']
 })
 export class EditMemberComponent  implements OnInit , IPeriventUnSavechanges{
+  errors =[];
 
   user:User;
   member:IMember;
@@ -31,8 +32,20 @@ export class EditMemberComponent  implements OnInit , IPeriventUnSavechanges{
   }
 
   onsubmit(){
-    console.log(this.form.value)
+    if(!this.form.valid){
+      this.form.markAllAsTouched();
+      return;
+    }
+    this.memberservice.updatemember(this.form.value).subscribe(member=>{
+      this.errors=[];
+      this.member = member;
+      console.log("llll",member)
+    },error=>{
+      this.errors= error;
+    }
+    )
   }
+
     loadeMember(){
       this.memberservice.getMemberByUserName(this.user.userName).subscribe(member=>{
         this.member = member;

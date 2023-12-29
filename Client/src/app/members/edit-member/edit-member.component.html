@@ -165,6 +165,12 @@
                         </div>
                       </div>
                       <hr>
+                      <div class="row" *ngIf="errors">
+                        <div *ngFor="let item of errors">
+                          <span class="text text-danger">{{ item }}</span>
+                        </div>
+                      </div>
+                      <hr />
                       <div class="row">
                         <div class="col-sm-12">
                           <button type="submit" class="btn btn-info "  >Edit</button>

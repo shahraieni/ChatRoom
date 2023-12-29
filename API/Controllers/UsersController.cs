@@ -61,7 +61,7 @@ namespace API.Controllers
         }
         [HttpPut("UpdateUser")]
         [Authorize]
-        public async Task<ActionResult<MemberDto>> UpdateUser(MemberUpdateDto memberDto)
+        public async Task<ActionResult<MemberDto>> UpdateUser([FromBody]MemberUpdateDto memberDto)
         {
            var username = HttpContext.User.FindFirst("nameid")?.Value;
            var member = await _UserRepository.GetMemberDtoByUserName(username);
