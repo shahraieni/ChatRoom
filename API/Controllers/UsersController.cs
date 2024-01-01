@@ -14,6 +14,7 @@ using API.models;
 using AutoMapper;
 using Microsoft.VisualBasic;
 using Microsoft.EntityFrameworkCore.ChangeTracking.Internal;
+using System.Security.Claims;
 
 namespace API.Controllers
 
@@ -63,7 +64,7 @@ namespace API.Controllers
         [Authorize]
         public async Task<ActionResult<MemberDto>> UpdateUser([FromBody]MemberUpdateDto memberDto)
         {
-           var username = HttpContext.User.FindFirst("nameid")?.Value;
+           var username = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
            var member = await _UserRepository.GetMemberDtoByUserName(username);
            if(member == null) return NotFound(new ApiResponse(404));
            member = _mapper.Map(memberDto, member);

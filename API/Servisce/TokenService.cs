@@ -25,6 +25,7 @@ namespace API.Servisce
         {
             var claims = new List<Claim>{
                 new(JwtRegisteredClaimNames.NameId, user.UserName),
+                new(JwtRegisteredClaimNames.Email, user?.Email),
                 new(JwtRegisteredClaimNames.Sid, user.Id.ToString()),
             };
 

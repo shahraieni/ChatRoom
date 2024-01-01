@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { IPeriventUnSavechanges } from 'src/app/_gaurds/periventon-savechanges.guard';
 import { IMember } from 'src/app/_models/Member';
@@ -20,7 +21,7 @@ export class EditMemberComponent  implements OnInit , IPeriventUnSavechanges{
 
   form:FormGroup
 
-  constructor(private accontservice: AccountService , private memberservice:MemberService ){}
+  constructor(private accontservice: AccountService , private memberservice:MemberService ,private toasr: ToastrService){}
   canActivate(): boolean | Observable<boolean> {
    return this.form.dirty ? confirm("تغییرات را ذخیره نکرده اید ایا میخواهید خارج شوید؟"):true
   }
@@ -32,13 +33,11 @@ export class EditMemberComponent  implements OnInit , IPeriventUnSavechanges{
   }
 
   onsubmit(){
-    if(!this.form.valid){
-      this.form.markAllAsTouched();
-      return;
-    }
-    this.memberservice.updatemember(this.form.value).subscribe(member=>{
+    
+    this.memberservice.updateMember(this.form.value).subscribe(member=>{
       this.errors=[];
       this.member = member;
+      this.toasr.success('Update Member Success');
       console.log("llll",member)
     },error=>{
       this.errors= error;
@@ -54,7 +53,7 @@ export class EditMemberComponent  implements OnInit , IPeriventUnSavechanges{
           country: new FormControl(member.country),
           knowAs:new FormControl(member.knownAs),
           dateOfBirth:new FormControl(member.dateOfBirth),
-          email:new FormControl(member.email),
+          email:new FormControl(member.email,[Validators.required,Validators.required]),
           interests:  new FormControl(member.interests),
           lookingFor: new FormControl(member.lookingFor),
           introduction:new FormControl(member.introduction)
