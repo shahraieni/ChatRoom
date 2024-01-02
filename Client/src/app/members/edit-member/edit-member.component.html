@@ -173,7 +173,9 @@
                       <hr />
                       <div class="row">
                         <div class="col-sm-12">
-                          <button   [disabled]="form.invalid" type="submit" class="btn btn-info "  >Edit</button>
+                          <button   [disabled]="form.invalid" type="submit" class="btn btn-info "  >Edit
+                            <span *ngIf="isSubmit"   class="spinner-border spinner-border-sm" aria-hidden="true"></span>
+                          </button>
                         </div>
                       </div>
                     </div>
