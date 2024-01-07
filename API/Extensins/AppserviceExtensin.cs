@@ -28,6 +28,7 @@ namespace API.extensions
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
 
             });
+             services.Configure<CloudinarySettings>(configuration.GetSection("CloudinarySettings"));
               services.AddControllers();
                  services.AddCors();
             services.AddSwaggerGen(c =>
