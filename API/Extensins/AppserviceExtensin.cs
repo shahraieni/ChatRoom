@@ -29,6 +29,7 @@ namespace API.extensions
 
             });
              services.Configure<CloudinarySettings>(configuration.GetSection("CloudinarySettings"));
+             services.AddScoped<IPhotoService,PhotoService>();
               services.AddControllers();
                  services.AddCors();
             services.AddSwaggerGen(c =>

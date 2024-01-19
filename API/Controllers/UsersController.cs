@@ -64,11 +64,11 @@ namespace API.Controllers
         [Authorize]
         public async Task<ActionResult<MemberDto>> UpdateUser([FromBody]MemberUpdateDto memberDto)
         {
-           var username = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+           var username = HttpContext?.User?.GetUserName();
            var member = await _UserRepository.GetMemberDtoByUserName(username);
            if(member == null) return NotFound(new ApiResponse(404));
            member = _mapper.Map(memberDto, member);
-          // _UserRepository.Update(member);
+           _UserRepository.Update(member);
            if(await _UserRepository.SaveAllAsync())
            return Ok(_mapper.Map<MemberDto>(member));
            return BadRequest(new ApiResponse(400));
