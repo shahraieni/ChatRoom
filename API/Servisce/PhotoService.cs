@@ -32,7 +32,7 @@ namespace API.Servisce
             return uploadResult;
         }
 
-        public Task<DeletionResult> DeletePhotoAsync(string publicId)
+        public  async Task<DeletionResult> DeletePhotoAsync(string publicId)
         {
              var deleteParams = new DeletionParams(publicId);
             DeletionResult result = await _cloudinary.DestroyAsync(deleteParams);

@@ -1,3 +1,6 @@
+using System.Linq;
+using System.Security.Claims;
+
 namespace API.Extensins
 {
     public static class ClaimsPrincipleExtension
