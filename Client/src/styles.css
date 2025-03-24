@@ -1,1 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
+/* @import 'bootstrap/dist/css/bootstrap.min.css'; */
+@import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
+@import "@fortawesome/fontawesome-free/css/all.min.css";
+/* @import "ngx-toastr/toastr.css";
+@import "bootswatch/dist/zephyr/bootstrap.min.css";
+@import "./styles/_base.css";
+@import "../node_modules/ngx-bootstrap/datepicker/bs-datepicker.css" */
