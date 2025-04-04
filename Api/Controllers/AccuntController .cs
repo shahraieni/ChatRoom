@@ -21,7 +21,7 @@ namespace Api.Controllers
             _tokenService = tokenService;
         }
 
-        [HttpPost("register")]
+        [HttpPost("register")]   
         public async Task<ActionResult<UserTokenDto>> Register(RegisterDto model)
         {
                 if(await IsExistUserName(model.userName))

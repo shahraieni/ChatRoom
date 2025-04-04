@@ -1,4 +1,5 @@
 using Api.Data;
+using Api.extensions;
 using Api.interfaces;
 using Api.services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -33,55 +34,11 @@ namespace Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddScoped<ITokenService,TokenService>();
-
-
-
-
-
+           
+           services.AddApplicationService(Configuration);
              //add authentication
-            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
-                .AddJwtBearer(options =>
-                {
-                    //for JWT
-                    options.TokenValidationParameters = new TokenValidationParameters
-                    {
-                        ValidateIssuer = false,
-                        ValidateAudience = false,
-                        ValidateLifetime = true,
-                        ValidateIssuerSigningKey = true,
-                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Token:Key"])),
-                    };
-
-                    // //signalR
-                    // options.Events = new JwtBearerEvents
-                    // {
-                    //     OnMessageReceived = context =>
-                    //     {
-                    //         var accessToken = context.Request.Query["access_token"]; //access_token : token
-                    //         var path = context.HttpContext.Request.Path;
-                    //         if (!string.IsNullOrEmpty(accessToken) && (path.StartsWithSegments("/hubs")))
-                    //         {
-                    //             context.Token = accessToken;
-                    //         }
-                    //         return Task.CompletedTask;
-                    //     }
-                    // };
-                });
-
-            
-            services.AddDbContext<DataContext>(options =>{
-                     options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"));
-            });
-
-
-            services.AddControllers();
-
-            services.AddCors();
-            services.AddSwaggerGen(c =>
-            {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Api", Version = "v1" });
-            });
+           
+      
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
