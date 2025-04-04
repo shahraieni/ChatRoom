@@ -26,7 +26,7 @@ namespace Api.Controllers
         }
 
         [HttpGet("{id:int}")]
-        // [Authorize]
+         [Authorize]
         public async Task<Users> GetUser(int id)
         {
             return await _context.Users.FirstOrDefaultAsync(x =>x.Id == id);
