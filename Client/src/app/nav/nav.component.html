@@ -1,5 +1,5 @@
 
-<nav class="navbar navbar-expand-lg bg-body-tertiary">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark"  *ngIf="loggedIn">
     <div class="container-fluid">
       <a class="navbar-brand" href="#">Chat App </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll" aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
@@ -8,7 +8,7 @@
       <div class="collapse navbar-collapse" id="navbarScroll">
         <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
           <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#">Home</a>
+            <a class="nav-link " routerLinkActive="active"   aria-current="page" [routerLink]="['/']">Home</a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="#">Link</a>
@@ -24,11 +24,44 @@
               <li><a class="dropdown-item" href="#">Something else here</a></li>
             </ul>
           </li>
-          <li class="nav-item">
-            <a class="nav-link disabled" aria-disabled="true">Link</a>
+          <li class="nav-item" >
+            <a class="nav-link"  (click)="logout()">Logout</a>
           </li>
         </ul>
-        <form
+
+        <div class="dropdown mr-10" dropdown placement="bottom left" >
+  
+        <a
+          class="btn btn-secondary dropdown-toggle"
+          role="button"
+          dropdownToggle
+          id="dropdownMenuLink"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
+          خوش آمدید 
+        </a>
+
+        <ul
+          *dropdownMenu
+          class="dropdown-menu"
+          aria-labelledby="dropdownMenuLink"
+        >
+          <li>
+            <a class="dropdown-item" [routerLink]="['/members', 'edit']"
+              >ویرایش پروفایل</a
+            >
+          </li>
+          <li>
+            <a class="dropdown-item" (click)="logout()">
+              خروج <span class="fas fa-sign-out-alt"></span
+            ></a>
+          </li>
+        </ul>
+      </div>
+
+
+        <!-- <form *ngIf="!loggedIn"
         (ngSubmit)="onSubmit()"
         [formGroup]="form"
         class="d-flex"
@@ -48,28 +81,31 @@
         <button class="btn btn-outline-success me-2"  type="submit" [disabled]="form.invalid" >
           Login
         </button>
-      </form>
+      </form> -->
       </div>
     </div>
   </nav>
 
 
-<!-- 
-<body>  
-    <div class="container">  
-        <h2>ورود به حساب کاربری</h2>  
-        <form>  
-            <div class="input-group">  
-                <label for="username">نام کاربری</label>  
-                <input type="text" id="username" name="username" required>  
-            </div>  
-            <div class="input-group">  
-                <label for="password">گذرواژه</label>  
-                <input type="password" id="password" name="password" required>  
-            </div>  
-            <button type="submit">ورود</button>  
-            <p class="message">فراموش کرده‌اید گذرواژه‌تان؟ <a href="#">بازیابی</a></p>  
-        </form>  
-    </div>  
-</body>   -->
+  <!-- --------------------------------- -->
+<ng-container *ngIf="!loggedIn">
+  <body>
+      <div class="container">
+          <h2>ورود به حساب کاربری</h2>
+          <form   (ngSubmit)="onSubmit()"
+          [formGroup]="form">
+              <div class="input-group">
+                  <label for="username">نام کاربری</label>
+                  <input type="text" id="username" name="username" formControlName="userName" >
+              </div>
+              <div class="input-group">
+                  <label for="password">گذرواژه</label>
+                  <input type="password" id="password" name="password" formControlName="password">
+              </div>
+              <button type="submit"  [disabled]="form.invalid">ورود</button>
+              <p class="message">فراموش کرده‌اید گذرواژه‌تان؟ <a href="#">بازیابی</a></p>
+          </form>
+      </div>
+  </body>
+</ng-container>
 
