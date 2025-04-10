@@ -13,6 +13,7 @@ export class NavComponent  implements OnInit {
 
   currentUser$ :Observable<IUser>
 
+
 form = new FormGroup({
   userName : new FormControl('',[Validators.required,Validators.minLength(3),Validators.maxLength(20)]),
   password : new FormControl('',[Validators.required,Validators.minLength(5),Validators.maxLength(20)])
@@ -22,6 +23,9 @@ form = new FormGroup({
     
     this.currentUser$ = this.accountService.currentUser$;
   }
+
+ 
+
 
   onSubmit(){
     if(this.form.invalid){
