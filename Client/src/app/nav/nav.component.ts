@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { AccountService } from '../_services/account.service';
+import { AccountService, IUser } from '../_services/account.service';
 import { getCurrencySymbol } from '@angular/common';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-nav',
@@ -9,14 +10,17 @@ import { getCurrencySymbol } from '@angular/common';
   styleUrls: ['./nav.component.css']
 })
 export class NavComponent  implements OnInit {
-loggedIn =false
+
+  currentUser$ :Observable<IUser>
+
 form = new FormGroup({
   userName : new FormControl('',[Validators.required,Validators.minLength(3),Validators.maxLength(20)]),
   password : new FormControl('',[Validators.required,Validators.minLength(5),Validators.maxLength(20)])
 })
   constructor(private accountService:AccountService ){}
   ngOnInit(): void { 
-    this.getCurrencyUser()
+    
+    this.currentUser$ = this.accountService.currentUser$;
   }
 
   onSubmit(){
@@ -27,22 +31,18 @@ form = new FormGroup({
 
     this.accountService.login(this.form.value).subscribe((user :any)=>{
         
-          this.loggedIn = true;
+         
        
       });
     
-    console.log(this.loggedIn);
+  
   }
 
-  getCurrencyUser(){
-      this.accountService.currentUser$.subscribe(user=>{
-        this.loggedIn = !! user;
-      })
-  }
+ 
 
   logout(){
     this.accountService.logout();
-    this.loggedIn = false;
+   
   }
 
 }
