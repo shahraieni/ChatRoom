@@ -7,6 +7,11 @@ export interface IRequestLogin{
     password:string
 }
 
+export interface IRequestRejecter{
+  userName:string ;
+ password:string
+}
+
 export interface IUser{
   userName:string ;
   token:string
@@ -23,6 +28,18 @@ export class AccountService {
   currentUser$ = this.currentUser.asObservable();
 
   constructor(private http:HttpClient) { }
+    //TODO
+  register(rejecter:any){
+      return this.http.post<IUser>(`${this.baseUrl}/account/register`,rejecter).pipe(
+        map((response:IUser)=>{
+          if(response.userName && response.token){
+            localStorage.setItem('user',JSON.stringify(response));
+            this.currentUser.next(response)
+          }
+          return response;
+        })
+      )
+  }
 
 
   login(login : any){
