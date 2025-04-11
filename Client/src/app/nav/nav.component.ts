@@ -3,6 +3,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AccountService, IUser } from '../_services/account.service';
 import { getCurrencySymbol } from '@angular/common';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-nav',
@@ -18,7 +20,7 @@ form = new FormGroup({
   userName : new FormControl('',[Validators.required,Validators.minLength(3),Validators.maxLength(20)]),
   password : new FormControl('',[Validators.required,Validators.minLength(5),Validators.maxLength(20)])
 })
-  constructor(private accountService:AccountService ){}
+  constructor(private accountService:AccountService , private router:Router , private toast :ToastrService ){}
   ngOnInit(): void { 
     
     this.currentUser$ = this.accountService.currentUser$;
@@ -35,7 +37,9 @@ form = new FormGroup({
 
     this.accountService.login(this.form.value).subscribe((user :any)=>{
         
-         
+         this.router.navigateByUrl("/members");
+         this.toast.success("ورود شما با موفقیت انجام شد ","موفقیت")
+
        
       });
     
@@ -45,7 +49,8 @@ form = new FormGroup({
  
 
   logout(){
-    this.accountService.logout();
+    this.accountService.logout(); 
+    this.router.navigateByUrl("/")
    
   }
 
