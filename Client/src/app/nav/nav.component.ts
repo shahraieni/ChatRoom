@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { AccountService, IUser } from '../_services/account.service';
+import { AccountService } from '../_services/account.service';
 import { getCurrencySymbol } from '@angular/common';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
+import { IUser } from '../_models/account';
 
 @Component({
   selector: 'app-nav',
