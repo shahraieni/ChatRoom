@@ -5,6 +5,7 @@ using System.Security.Cryptography;
 using System.Threading.Tasks;
 using Api.Data;
 using Api.Entites;
+using Api.interfaces;
 using Api.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -15,17 +16,17 @@ namespace Api.Controllers
     {
 
          private readonly DataContext _context;
-        // private readonly ITokenService _tokenService;
+         private readonly ITokenService _tokenService;
 
-        public AccountController(DataContext context)
+        public AccountController(DataContext context, ITokenService tokenService)
         {
             _context = context;
-            // _tokenService = tokenService;
+            _tokenService = tokenService;
         }
 
 
-         [HttpPost("register")]   
-        public async Task<ActionResult<Users>> Register(RegisterDto model )
+        [HttpPost("register")]   
+        public async Task<ActionResult<UserTokenDto>> Register(RegisterDto model )
         {
 
 
@@ -43,14 +44,18 @@ namespace Api.Controllers
 
                 await _context.Users.AddAsync(user);
                 await _context.SaveChangesAsync();
-                return user;
+                return new UserTokenDto{
+                    userName = user.UserName,
+                    Token = _tokenService.CreateToken(user)
+
+                };
         }
 
 
 
         [HttpPost("login")]
 
-        public async Task<ActionResult<Users>> Login([FromBody]LoginDto model)
+        public async Task<ActionResult<UserTokenDto>> Login([FromBody]LoginDto model)
         {
             var user = _context.Users.SingleOrDefault(x=> x.UserName.ToLower() == model.userName.ToLower());
 
@@ -65,7 +70,11 @@ namespace Api.Controllers
                 if(computedHash[i] != user.PasswordHash[i]) return BadRequest("کلمه عبور اشتباه است");
              }
 
-             return user;
+             return new UserTokenDto{
+                    userName = user.UserName,
+                    Token = _tokenService.CreateToken(user)
+
+                };
         }
 
 
