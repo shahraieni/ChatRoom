@@ -26,6 +26,8 @@ namespace Api.Controllers
 
 
         [HttpPost("register")]   
+
+        
         public async Task<ActionResult<UserTokenDto>> Register(RegisterDto model )
         {
 
