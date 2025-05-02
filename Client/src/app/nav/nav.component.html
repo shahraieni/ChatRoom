@@ -1,0 +1,81 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="position: fixed; left: 0; right: 0;">
+    <div class="container-fluid">
+      <a class="navbar-brand" rou>Chat App </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarScroll"
+        aria-controls="navbarScroll" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarScroll">
+        <ul class="navbar-nav me-auto my-2 my-lg-0 navbar-nav-scroll" style="--bs-scroll-height: 100px;">
+  
+          <li class="nav-item">
+            <a class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}" routerLink="/">Home</a>
+          </li>
+  
+          <li class="nav-item">
+            <a class="nav-link" routerLinkActive="active" routerLink="/members">Members</a>
+          </li>
+  
+          <li class="nav-item">
+            <a class="nav-link" routerLinkActive="active" routerLink="/lists">Lists</a>
+          </li>
+  
+          <li class="nav-item">
+            <a class="nav-link" routerLinkActive="active" routerLink="/messages">Messages</a>
+          </li>
+  
+  
+        </ul>
+  
+        <!-- <div class="dropdown mr-10" dropdown placement="bottom left" >
+  
+          <a class="btn btn-secondary dropdown-toggle" role="button" dropdownToggle id="dropdownMenuLink"
+            data-bs-toggle="dropdown" aria-expanded="false">
+            خوش آمدید 
+          </a>
+  
+          <ul *dropdownMenu class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <li>
+              <a class="dropdown-item" [routerLink]="['/members', 'edit']">ویرایش پروفایل</a>
+            </li>
+            <li>
+              <a class="dropdown-item" >
+                خروج <span class="fas fa-sign-out-alt"></span></a>
+            </li>
+          </ul>
+        </div>
+   -->
+  
+        <form  (ngSubmit)="onSubmit()"     [formGroup]="form" class="d-flex">
+          <input type="text" formControlName="userName" class="form-control me-2" placeholder="userName" />
+          <input type="password" formControlName="password" class="form-control me-2" placeholder="password" />
+          <button class="btn btn-outline-success me-2" type="submit" [disabled]="form.invalid">
+            Login
+          </button>
+        </form>
+      </div>
+    </div>
+  </nav>
+  
+  
+  <!-- --------------------------------- -->
+  <!-- <ng-container *ngIf="(currentUser$ | async) === null  ">
+    <body>
+        <div class="container">
+            <h2>ورود به حساب کاربری</h2>
+            <form   (ngSubmit)="onSubmit()"
+            [formGroup]="form">
+                <div class="input-group">
+                    <label for="username">نام کاربری</label>
+                    <input type="text" id="username" name="username" formControlName="userName" >
+                </div>
+                <div class="input-group">
+                    <label for="password">گذرواژه</label>
+                    <input type="password" id="password" name="password" formControlName="password">
+                </div>
+                <button type="submit"  [disabled]="form.invalid">ورود</button>
+                <p class="message">فراموش کرده‌اید گذرواژه‌تان؟ <a [routerLink]="['/register']">بازیابی</a></p>
+            </form>
+        </div>
+    </body>
+  </ng-container> -->
