@@ -1,6 +1,9 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { AccountService, IRequestRegister } from '../_services/account.service';
+import { AccountService } from '../_services/account.service';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { IRequestRegister } from '../_model/account';
 
 @Component({
   selector: 'app-register',
@@ -10,7 +13,7 @@ import { AccountService, IRequestRegister } from '../_services/account.service';
 export class RegisterComponent   implements OnInit  {
 
 @Output() close  = new EventEmitter()
-   constructor(private accountService : AccountService){}
+   constructor(private accountService : AccountService  , private router : Router , private toast: ToastrService){}
 
   form = new FormGroup(
     {
@@ -67,8 +70,8 @@ export class RegisterComponent   implements OnInit  {
     this.accountService.register(this.form.value  as IRequestRegister).subscribe((user) => {
       console.log("user" , user);
       
-      // this.router.navigateByUrl("/members");
-      // this.toast.success("ورود شما با موفقیت انجام شد ","موفقیت")
+       this.router.navigateByUrl("/members");
+       this.toast.success("ورود شما با موفقیت انجام شد ","موفقیت")
 
       
     });

@@ -11,6 +11,9 @@ import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { HomeComponent } from './home/home.component';
 import { RegisterComponent } from './register/register.component';
 import { NotFoundComponent } from './not-found/not-found.component';
+import { ToastrModule } from 'ngx-toastr';
+
+
 
 @NgModule({
   declarations: [
@@ -26,7 +29,13 @@ import { NotFoundComponent } from './not-found/not-found.component';
     HttpClientModule,
     ReactiveFormsModule,
     BsDropdownModule.forRoot(),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ToastrModule.forRoot({
+      positionClass: 'toast-bottom-right',
+      timeOut:5000,
+      progressBar:true,
+      progressAnimation:'increasing'
+    })
     
   ],
   providers: [],

@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { AccountService, IRequestLogin, User } from '../_services/account.service';
+import { AccountService, } from '../_services/account.service';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
+import { IRequestLogin, User } from '../_model/account';
 
 @Component({
   selector: 'app-nav',
@@ -17,7 +20,7 @@ export class NavComponent   implements OnInit {
     password : new FormControl('',[Validators.required,Validators.minLength(5),Validators.maxLength(20)])
   })
 
-  constructor(private accountService: AccountService ){}
+  constructor(private accountService: AccountService  , private router: Router , private toast: ToastrService){}
 
   ngOnInit(): void {
   
@@ -32,7 +35,9 @@ export class NavComponent   implements OnInit {
 
     this.accountService.login(this.form.value  as IRequestLogin).subscribe(( user )=>{
 
-      
+      this.router.navigateByUrl("/members");
+      this.toast.success("ورود شما با موفقیت انجام شد ","موفقیت")
+
 
       })
     }
@@ -40,7 +45,7 @@ export class NavComponent   implements OnInit {
   
       logout(){
         this.accountService.logout();
-        
+        this.router.navigateByUrl("/");
 
       }
       

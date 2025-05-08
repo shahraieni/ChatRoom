@@ -1,22 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, map, ReplaySubject } from 'rxjs';
-
-export interface IRequestLogin{
-  userName:string;
-  password:string;
-}
-
-export interface IRequestRegister{
-  userName:string;
-  password:string;
-}
+import { IRequestLogin, IRequestRegister, User } from '../_model/account';
 
 
-export interface User{
-  userName:string;
-  token:string;
-}
 
 @Injectable({
   providedIn: 'root'
