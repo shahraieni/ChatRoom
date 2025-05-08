@@ -1,8 +1,8 @@
-/* :root {
+:root {
     --color-background: #ced4da;
     --color-danger: #9a031e;
     --font-body: "B Koodak", "JetBrains Mono";
-  } */
+  }
   body {
     font-family: var(--font-body);
     font-size: 100%;

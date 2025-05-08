@@ -7,6 +7,12 @@ export interface IRequestLogin{
   password:string;
 }
 
+export interface IRequestRegister{
+  userName:string;
+  password:string;
+}
+
+
 export interface User{
   userName:string;
   token:string;
@@ -37,6 +43,22 @@ export class AccountService {
   setcurrentUser(user :User){
     this.currentuser.next(user);
   }
+
+
+  register(rejecter:IRequestRegister){
+    return   this._http.post<User>(`${this.baseUrl}/account/register`,rejecter).pipe(
+      map((response : User)=>{
+        if(response.userName && response.token){
+          localStorage.setItem("user",JSON.stringify(response));
+          this.currentuser.next(response);
+        }
+
+        return response;
+        
+      })
+    )
+  
+}
 
   logout(){
     localStorage.removeItem("user");
