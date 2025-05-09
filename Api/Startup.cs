@@ -1,6 +1,7 @@
 using Api.Data;
 using Api.extensions;
 using Api.interfaces;
+using Api.Meddielwares;
 using Api.services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
@@ -44,6 +45,7 @@ namespace Api
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
+            app.UseMiddleware<ExceptionHandlerMiddleware>();
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
