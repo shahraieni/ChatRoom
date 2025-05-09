@@ -1,4 +1,5 @@
 using Api.Data;
+using Api.Errors;
 using Api.extensions;
 using Api.interfaces;
 using Api.Meddielwares;
@@ -37,8 +38,6 @@ namespace Api
         {
             
             services.AddApplicationService(Configuration);
-           
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

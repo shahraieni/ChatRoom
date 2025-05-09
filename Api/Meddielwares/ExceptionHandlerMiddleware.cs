@@ -45,7 +45,7 @@ namespace Api.Meddielwares
                 context.Response.StatusCode = (int)HttpStatusCode.InternalServerError;
                 var response = _env.IsDevelopment() ?
                     new ApiExeption(context.Response.StatusCode, ex?.Message, ex?.StackTrace?.ToString()) :
-                    new ApiResponse((int)HttpStatusCode.InternalServerError,ex?.Message);
+                    new ApiExeption((int)HttpStatusCode.InternalServerError,ex?.Message);
 
                  var options = new JsonSerializerOptions { PropertyNamingPolicy = JsonNamingPolicy.CamelCase };
                 var json = JsonSerializer.Serialize(response ,options);
