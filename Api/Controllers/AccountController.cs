@@ -7,6 +7,8 @@ using Api.Data;
 using Api.Entites;
 using Api.interfaces;
 using Api.Models;
+using API.Errors;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -26,6 +28,8 @@ namespace Api.Controllers
 
 
         [HttpPost("register")]   
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ApiResponse),StatusCodes.Status400BadRequest)]
 
         
         public async Task<ActionResult<UserTokenDto>> Register(RegisterDto model )
@@ -33,7 +37,7 @@ namespace Api.Controllers
 
 
                   if(await IsExistUserName(model.userName))
-                        return BadRequest("نام کاربری تکراری میباشد");
+                        return BadRequest(new ApiResponse (400,  "نام کاربری تکراری میباشد"));
 
                using var  hmac = new HMACSHA512();
 
@@ -45,23 +49,34 @@ namespace Api.Controllers
                };
 
                 await _context.Users.AddAsync(user);
-                await _context.SaveChangesAsync();
-                return new UserTokenDto{
-                    userName = user.UserName,
-                    Token = _tokenService.CreateToken(user)
 
-                };
+                if(await _context.SaveChangesAsync() > 0)
+                {
+
+
+
+                        return  Ok(new UserTokenDto{
+                            userName = user.UserName,
+                            Token = _tokenService.CreateToken(user)
+
+                        }) ;
+                }
+
+                return BadRequest(new ApiResponse(400, "خطا در ثبت اطلاعات"));
+                
         }
 
 
 
         [HttpPost("login")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(ApiResponse),StatusCodes.Status400BadRequest)]
 
         public async Task<ActionResult<UserTokenDto>> Login([FromBody]LoginDto model)
         {
             var user = _context.Users.SingleOrDefault(x=> x.UserName.ToLower() == model.userName.ToLower());
 
-            if(user == null) return BadRequest("نام کاربری یافت نشد");
+            if(user == null) return BadRequest( new ApiResponse(400,"نام کاربری یافت نشد"));
 
              using var  hmac = new HMACSHA512(user.PasswordSalt);
 
@@ -69,14 +84,14 @@ namespace Api.Controllers
 
              for (int i = 0; i < computedHash.Length; i++)
              {
-                if(computedHash[i] != user.PasswordHash[i]) return BadRequest("کلمه عبور اشتباه است");
+                if(computedHash[i] != user.PasswordHash[i]) return BadRequest( new ApiResponse(400,"رمز عبور اشتباه است"));
              }
 
-             return new UserTokenDto{
+             return Ok( new UserTokenDto{
                     userName = user.UserName,
                     Token = _tokenService.CreateToken(user)
 
-                };
+                });
         }
 
 
