@@ -8,12 +8,13 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using Api.Entites;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 
 namespace Api.Data.SeedData
 {
     public class SeedUserData
     {
-         public static async Task SeedUsers(DataContext context)
+         public static async Task SeedUsers(DataContext context ,ILoggerFactory logger )
         {
             try
             {
@@ -38,6 +39,9 @@ namespace Api.Data.SeedData
             }
             catch (Exception ex)
             {
+                var log = logger.CreateLogger<SeedUserData>();
+                log.LogError(ex.Message);
+                throw;
             }
         }
     }
