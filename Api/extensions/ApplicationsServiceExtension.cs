@@ -6,6 +6,7 @@ using Api.Data;
 using Api.Errors;
 using Api.interfaces;
 using Api.services;
+using API.Helpers;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -19,6 +20,10 @@ namespace Api.extensions
          public static IServiceCollection  AddApplicationService(this IServiceCollection services , IConfiguration configuration)
          {
                 services.AddScoped<ITokenService , TokenService>();
+                services.AddScoped<IUserRepository , UserRepository>();
+                services.AddAutoMapper(typeof(AutoMapperProfile).Assembly);
+
+
                 
               services.AddDbContext<DataContext>(options =>{
                      options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
