@@ -9,6 +9,7 @@ using Api.interfaces;
 using Api.Models;
 using API.Errors;
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -31,13 +32,15 @@ namespace Api.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public async Task<ActionResult<IEnumerable<MemberDto>>> GetUsers()
         {
-           
-           return Ok(await _userRepository.GetAllUsersMemberDto()) ; 
+
+            return Ok(await _userRepository.GetAllUsersMemberDto());
         }
 
         [HttpGet("getUserById/{id:int}")]
+        [Authorize]
         public async Task<ActionResult<MemberDto>> GetUserById(int id)
         {
             var user =  await _userRepository.GetMemberDtoById(id);
@@ -45,13 +48,14 @@ namespace Api.Controllers
             
                 return Ok(user);
         }
-          [HttpGet("getUserByUserName/{userName}")]
+        [HttpGet("getUserByUserName/{userName}")]
+          [Authorize]
         public async Task<ActionResult<MemberDto>> GetUserByUserName(string userName)
         {
-            var user =  await _userRepository.GetMemberDtoByUserName(userName);
-            if(user == null)  return BadRequest(new ApiResponse(400 , "کاربری یافت نشد"));
-            
-                return Ok(user);
+            var user = await _userRepository.GetMemberDtoByUserName(userName);
+            if (user == null) return BadRequest(new ApiResponse(400, "کاربری یافت نشد"));
+
+            return Ok(user);
         }
 
     }
