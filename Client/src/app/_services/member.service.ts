@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment.prod';
 import { IMember } from '../_model/member';
 
-const httpHeader = new HttpHeaders().set('Authorization','Bearer ' + JSON.parse(localStorage.getItem('user'))?.token);
+
 
 
 @Injectable({
@@ -25,11 +25,11 @@ export class MemberService {
 
   getMemberByUserName(userName :string){
 
-    return this.http.get<IMember>(`${this.baseUrl}/users/getUserByUserName/${userName}`,{headers:httpHeader});
+    return this.http.get<IMember>(`${this.baseUrl}/users/getUserByUserName/${userName}`);
 
   }
 
   getUserNameById(id :number){
-    return this.http.get<IMember>(`${this.baseUrl}/users/getUserById/${id}`,{headers:httpHeader});
+    return this.http.get<IMember>(`${this.baseUrl}/users/getUserById/${id}`);
   }
 }
