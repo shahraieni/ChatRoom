@@ -32,12 +32,10 @@ export class AuthInterceptor implements HttpInterceptor {
     return next.handle(request).pipe(
       tap((event)=>{
         if(event.type === HttpEventType.Sent){
-              console.log("request sent");
-              
+               
         }
         if(event.type === HttpEventType.Response){
-          console.log("get Response");
-
+          
           const token = event.body?.userName;
           if(token){
             localStorage.setItem("user",JSON.stringify(event.body))

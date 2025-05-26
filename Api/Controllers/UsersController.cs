@@ -40,7 +40,7 @@ namespace Api.Controllers
         }
 
         [HttpGet("getUserById/{id:int}")]
-        [Authorize]
+        
         public async Task<ActionResult<MemberDto>> GetUserById(int id)
         {
             var user =  await _userRepository.GetMemberDtoById(id);
@@ -49,7 +49,6 @@ namespace Api.Controllers
                 return Ok(user);
         }
         [HttpGet("getUserByUserName/{userName}")]
-          [Authorize]
         public async Task<ActionResult<MemberDto>> GetUserByUserName(string userName)
         {
             var user = await _userRepository.GetMemberDtoByUserName(userName);
