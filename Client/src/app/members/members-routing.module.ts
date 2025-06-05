@@ -4,6 +4,7 @@ import { HomeMemberComponent } from './home-member/home-member.component';
 import { ListMemberComponent } from './list-member/list-member.component';
 import { DetailMemberComponent } from './detail-member/detail-member.component';
 import { GetMemberResolver } from '../_resolvers/get-member.resolver';
+import { EditMemberComponent } from './edit-member/edit-member.component';
 
 //localhost:4200/members
 const routes: Routes = [
@@ -12,13 +13,19 @@ const routes: Routes = [
     component: HomeMemberComponent,
     children: [
       { path: '', component: ListMemberComponent },
-      //localhost:4200/members/ali
+ 
+      {
+        path : 'edit' ,
+        component:EditMemberComponent,
+        pathMatch:'full'
+      },
       {
         path: ':username',
         component: DetailMemberComponent,
         resolve :{member: GetMemberResolver},
         pathMatch: 'full',
       },
+
     ],
   },
 ];

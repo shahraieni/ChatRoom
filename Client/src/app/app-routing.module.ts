@@ -7,7 +7,8 @@ import { ErrorsComponent } from './errors/errors.component';
 
 const routes: Routes = [
   { path: '', component: HomeComponent },
-  { path: 'members', canActivate: [AuthGuard], loadChildren: () => import('./members/members.module').then((x) => x.MembersModule) },
+  { path: 'members', canActivate: [AuthGuard],
+  loadChildren: () => import('./members/members.module').then((x) => x.MembersModule) },
   { path: 'lists', canActivate: [AuthGuard], loadChildren: () => import('./list/list.module').then((x) => x.ListModule) },
   { path: 'messages', canActivate: [AuthGuard], loadChildren: () => import('./messages/messages.module').then((x) => x.MessagesModule) },
   { path : 'errors' , component: ErrorsComponent},

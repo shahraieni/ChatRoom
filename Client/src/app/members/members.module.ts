@@ -7,14 +7,17 @@ import { HomeMemberComponent } from './home-member/home-member.component';
 import { DetailMemberComponent } from './detail-member/detail-member.component';
 import { CardMemberComponent } from './card-member/card-member.component';
 import { SharedModule } from '../shared/shared.module';
+import { EditMemberComponent } from './edit-member/edit-member.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
-  declarations: [ListMemberComponent,HomeMemberComponent,DetailMemberComponent, CardMemberComponent],
+  declarations: [ListMemberComponent,HomeMemberComponent,DetailMemberComponent, CardMemberComponent, EditMemberComponent],
   imports: [
     CommonModule,
     MembersRoutingModule,
-    SharedModule
+    SharedModule,
+    ReactiveFormsModule
   ]
 })
 export class MembersModule { }
