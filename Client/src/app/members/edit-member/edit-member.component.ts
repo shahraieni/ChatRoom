@@ -25,11 +25,17 @@ export class EditMemberComponent  implements OnInit{
   loadMember(){
     this.memberService.getMemberByUserName(this.user.userName).subscribe(member=>{
       this.member = member;
+      // console.log(member);
+      
       this.form = new FormGroup({
         city: new FormControl(member.city),
         country: new FormControl(member.country),
         knownAs: new FormControl(member.knownAs),
         dateOfBirth: new FormControl(member.dateOfBirth),
+        email: new FormControl(member.email),
+        interests: new FormControl(member.interests),
+        lookingFor: new FormControl(member.lookingFor),
+        introduction: new FormControl(member.introduction),
       })
     })
   };
@@ -39,5 +45,10 @@ export class EditMemberComponent  implements OnInit{
       })
 
   };
+
+  onSubmit(){
+      console.log(this.form.value);
+      
+  }
 
 }
