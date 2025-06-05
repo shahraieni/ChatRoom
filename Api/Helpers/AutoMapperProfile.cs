@@ -17,7 +17,7 @@ namespace API.Helpers
             // CreateMap<RegisterDto, Users>();
 
              CreateMap<Photo, PhotoDto>();
-            // CreateMap<MemberUpdateDto, Users>();
+             CreateMap<MemberUpdateDto, Users>();
             // //user Likes
             // CreateMap<Users, LikeDto>()
             //     .ForMember(x => x.Age, c => c.MapFrom(v => v.GetAge()))

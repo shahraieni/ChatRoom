@@ -20,7 +20,7 @@ export class MemberService {
 
 
   getMembers(){
-    return   this.http.get<IMember[]>(`${this.baseUrl}/users`)
+    return   this.http.get<IMember[]>(`${this.baseUrl}/users/getAllUsers`)
   }
 
   getMemberByUserName(userName :string){
@@ -31,5 +31,9 @@ export class MemberService {
 
   getUserNameById(id :number){
     return this.http.get<IMember>(`${this.baseUrl}/users/getUserById/${id}`);
+  }
+
+  updateMember(){
+    
   }
 }
