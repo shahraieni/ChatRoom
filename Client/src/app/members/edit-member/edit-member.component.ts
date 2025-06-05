@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { Observable } from 'rxjs';
+import { IPreventUnsavedChanges } from 'src/app/_guards/prevent-unsaved-chenges.guard';
 import { User } from 'src/app/_model/account';
 import { IMember } from 'src/app/_model/member';
 import { AccountService } from 'src/app/_services/account.service';
@@ -10,13 +12,18 @@ import { MemberService } from 'src/app/_services/member.service';
   templateUrl: './edit-member.component.html',
   styleUrls: ['./edit-member.component.css']
 })
-export class EditMemberComponent  implements OnInit{
+export class EditMemberComponent  implements OnInit , IPreventUnsavedChanges{
 
   user :User;
   member:IMember;
   form :FormGroup;
 
   constructor(private accountService:AccountService , private memberService:MemberService){}
+
+
+  canDeactivate(): Observable<boolean> | boolean {
+    return this.form.dirty ? confirm("تغییرات را ذخیره نکرده اید میخواهید خارج شوید ؟") : true;
+  }
   ngOnInit(): void {
    this.loadUser();
    this.loadMember();
@@ -47,8 +54,6 @@ export class EditMemberComponent  implements OnInit{
   };
 
   onSubmit(){
-      console.log(this.form.value);
-      
   }
 
 }

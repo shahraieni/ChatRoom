@@ -5,6 +5,7 @@ import { ListMemberComponent } from './list-member/list-member.component';
 import { DetailMemberComponent } from './detail-member/detail-member.component';
 import { GetMemberResolver } from '../_resolvers/get-member.resolver';
 import { EditMemberComponent } from './edit-member/edit-member.component';
+import { PreventUnsavedChangesGuard } from '../_guards/prevent-unsaved-chenges.guard';
 
 //localhost:4200/members
 const routes: Routes = [
@@ -17,6 +18,7 @@ const routes: Routes = [
       {
         path : 'edit' ,
         component:EditMemberComponent,
+        canDeactivate:[PreventUnsavedChangesGuard],
         pathMatch:'full'
       },
       {

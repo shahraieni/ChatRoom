@@ -68,8 +68,7 @@ export class RegisterComponent   implements OnInit  {
   onSubmit() {
     debugger
     this.accountService.register(this.form.value  as IRequestRegister).subscribe((user) => {
-      console.log("user" , user);
-      
+   
        this.router.navigateByUrl("/members");
        this.toast.success("ورود شما با موفقیت انجام شد ","موفقیت")
 
