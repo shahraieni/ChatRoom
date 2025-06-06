@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 import { Observable } from 'rxjs';
 import { IPreventUnsavedChanges } from 'src/app/_guards/prevent-unsaved-chenges.guard';
 import { User } from 'src/app/_model/account';
@@ -18,7 +19,11 @@ export class EditMemberComponent  implements OnInit , IPreventUnsavedChanges{
   member:IMember;
   form :FormGroup;
 
-  constructor(private accountService:AccountService , private memberService:MemberService){}
+  constructor(
+    private accountService:AccountService ,
+    private memberService:MemberService,
+    private toast : ToastrService
+  ){}
 
 
   canDeactivate(): Observable<boolean> | boolean {
@@ -39,7 +44,7 @@ export class EditMemberComponent  implements OnInit , IPreventUnsavedChanges{
         country: new FormControl(member.country),
         knownAs: new FormControl(member.knownAs),
         dateOfBirth: new FormControl(member.dateOfBirth),
-        email: new FormControl(member.email),
+        email: new FormControl(member.email , [Validators.required ,Validators.email]),
         interests: new FormControl(member.interests),
         lookingFor: new FormControl(member.lookingFor),
         introduction: new FormControl(member.introduction),
@@ -64,6 +69,7 @@ export class EditMemberComponent  implements OnInit , IPreventUnsavedChanges{
       this.memberService.updateMember(this.form.value).subscribe((member)=>{
 
         this.member = member;
+        this.toast.success("Update Member Success")
       
       }
     )

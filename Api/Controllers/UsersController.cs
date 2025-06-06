@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Api.Data;
 using Api.Entites;
@@ -62,7 +63,7 @@ namespace Api.Controllers
         
         public async Task<ActionResult<MemberDto>> UpdateUser([FromBody]MemberUpdateDto memberDto)
         {
-            var userName = HttpContext.User.FindFirst("nameid")?.Value;
+            var userName = HttpContext.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
 
             var member = await _userRepository.GetUserByUserName(userName);
 
