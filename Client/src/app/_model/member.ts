@@ -17,6 +17,18 @@ export interface IMember {
   photos: Photo[];
 }
 
+export interface IMemberUpdate{
+  
+  email: string,
+  introduction: string,
+  interests: string,
+  lookingFor: string,
+  knownAs: string,
+  city: string,
+  country: string
+
+}
+
 export interface Photo {
   id: number;
   url: string;

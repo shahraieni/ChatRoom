@@ -1,7 +1,7 @@
 import { HttpClient, HttpHandler, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment.prod';
-import { IMember } from '../_model/member';
+import { IMember, IMemberUpdate } from '../_model/member';
 
 
 
@@ -33,7 +33,9 @@ export class MemberService {
     return this.http.get<IMember>(`${this.baseUrl}/users/getUserById/${id}`);
   }
 
-  updateMember(){
-    
+  updateMember(memberUpdate :IMemberUpdate){
+    debugger
+      return  this.http.put<IMember>(`${this.baseUrl}/users/UpdateUser`,memberUpdate);
+
   }
 }

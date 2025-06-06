@@ -59,8 +59,8 @@ namespace Api.Controllers
         }
 
         [HttpPut("UpdateUser")]
-        [Authorize]
-        public async Task<ActionResult<MemberDto>> UpdateUser(MemberUpdateDto memberDto)
+        
+        public async Task<ActionResult<MemberDto>> UpdateUser([FromBody]MemberUpdateDto memberDto)
         {
             var userName = HttpContext.User.FindFirst("nameid")?.Value;
 

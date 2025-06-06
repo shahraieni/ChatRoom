@@ -13,7 +13,7 @@ import { MemberService } from 'src/app/_services/member.service';
   styleUrls: ['./edit-member.component.css']
 })
 export class EditMemberComponent  implements OnInit , IPreventUnsavedChanges{
-
+  errors = [];
   user :User;
   member:IMember;
   form :FormGroup;
@@ -54,6 +54,19 @@ export class EditMemberComponent  implements OnInit , IPreventUnsavedChanges{
   };
 
   onSubmit(){
+    
+
+      if(!this.form.valid){
+        this.form.markAllAsTouched();
+        return;
+      }
+
+      this.memberService.updateMember(this.form.value).subscribe((member)=>{
+
+        this.member = member;
+      
+      }
+    )
   }
 
 }
