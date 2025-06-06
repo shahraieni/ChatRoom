@@ -20,6 +20,11 @@ export class BusyService {
     })
   }
   hideBusy(){
+      this.busyRequestCount.next(this.busyRequestCount.value - 1);
 
+      if(this.busyRequestCount.value <= 0){
+        this.busyRequestCount.next(0);
+        this.spinner.hide();
+      }
   }
 }
