@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
-import { Observable } from 'rxjs';
+import { finalize, Observable } from 'rxjs';
 import { IPreventUnsavedChanges } from 'src/app/_guards/prevent-unsaved-chenges.guard';
 import { User } from 'src/app/_model/account';
 import { IMember } from 'src/app/_model/member';
@@ -18,6 +18,7 @@ export class EditMemberComponent  implements OnInit , IPreventUnsavedChanges{
   user :User;
   member:IMember;
   form :FormGroup;
+  isSubmit = false
 
   constructor(
     private accountService:AccountService ,
@@ -65,8 +66,10 @@ export class EditMemberComponent  implements OnInit , IPreventUnsavedChanges{
         this.form.markAllAsTouched();
         return;
       }
-
-      this.memberService.updateMember(this.form.value).subscribe((member)=>{
+      this.isSubmit = true;
+      this.memberService.updateMember(this.form.value).pipe(finalize(()=>{
+        this.isSubmit = false;
+      })).subscribe((member)=>{
 
         this.member = member;
         this.toast.success("Update Member Success")

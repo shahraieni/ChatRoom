@@ -159,7 +159,15 @@
                                         </div>
                                         <div class="col-sm-9 text-secondary">
                                           
-                                            <button type="submit"  [disabled]="form.invalid"   class="btn btn-primary px-4">Save Changes</button>
+                                            <button type="submit"  [disabled]="form.invalid"   class="btn btn-primary px-4">
+                                              Save Changes
+                                                    <span
+                                                    *ngIf="isSubmit"
+                                                    class="spinner-border spinner-border-sm"
+                                                    role="status"
+                                                    aria-hidden="true"
+                                                  ></span>
+                                            </button>
                                         </div>
                                     </div>
                                 </div>

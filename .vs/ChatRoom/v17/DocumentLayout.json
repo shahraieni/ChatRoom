@@ -5,6 +5,10 @@
     {
       "AbsoluteMoniker": "D:0:0:{0CBAF6BE-9804-4E52-B2E5-AEE0F91D16F0}|Api\\Api.csproj|d:\\projects\\chatroom\\api\\controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{0CBAF6BE-9804-4E52-B2E5-AEE0F91D16F0}|Api\\Api.csproj|solutionrelative:api\\controllers\\userscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0CBAF6BE-9804-4E52-B2E5-AEE0F91D16F0}|Api\\Api.csproj|d:\\projects\\chatroom\\api\\services\\tokenservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0CBAF6BE-9804-4E52-B2E5-AEE0F91D16F0}|Api\\Api.csproj|solutionrelative:api\\services\\tokenservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -14,11 +18,24 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "TokenService.cs",
+              "DocumentMoniker": "D:\\projects\\ChatRoom\\Api\\services\\TokenService.cs",
+              "RelativeDocumentMoniker": "Api\\services\\TokenService.cs",
+              "ToolTip": "D:\\projects\\ChatRoom\\Api\\services\\TokenService.cs",
+              "RelativeToolTip": "Api\\services\\TokenService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-06T06:08:55.601Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -28,7 +45,7 @@
               "RelativeDocumentMoniker": "Api\\Controllers\\UsersController.cs",
               "ToolTip": "D:\\projects\\ChatRoom\\Api\\Controllers\\UsersController.cs",
               "RelativeToolTip": "Api\\Controllers\\UsersController.cs",
-              "ViewState": "AQIAAC0AAAAAAAAAAAAowD8AAAAIAAAA",
+              "ViewState": "AQIAADUAAAAAAAAAAAA9wEEAAABUAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-06-05T14:04:29.63Z",
               "EditorCaption": ""
