@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 using Api.extensions;
@@ -25,6 +26,8 @@ namespace Api.Entites
         public string City { get; set; }
         public  string Country { get; set; }
         public DateTime Created { get; set; }
+
+        [InverseProperty("Users")]
         public ICollection<Photo> Photos { get; set; }
 
          //get age

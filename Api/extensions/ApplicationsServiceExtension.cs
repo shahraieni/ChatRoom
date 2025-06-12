@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Api.Data;
 using Api.Errors;
+using Api.Helpers;
 using Api.interfaces;
 using Api.services;
 using API.Helpers;
@@ -28,6 +29,9 @@ namespace Api.extensions
               services.AddDbContext<DataContext>(options =>{
                      options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
             });
+
+             services.Configure<CloudinarySettings>(configuration.GetSection("CloudinarySettings"));
+             services.AddScoped<IPhotoService , PhotoService>();
 
 
             services.AddControllers();

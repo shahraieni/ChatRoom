@@ -9,8 +9,7 @@ namespace Api.interfaces
 {
     public interface IUserRepository
     {
-        // Task<Users> GetUserByUserNameWithPhotos(string userName);
-
+         Task<Users> GetUserByUserNameWithPhotos(string userName);
          Task<IEnumerable<Users>> GetAllUsers();
          Task<IEnumerable<MemberDto>> GetAllUsersMemberDto();
          Task<Users> GetUserById(int id);
