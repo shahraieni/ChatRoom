@@ -9,10 +9,11 @@ import { CardMemberComponent } from './card-member/card-member.component';
 import { SharedModule } from '../shared/shared.module';
 import { EditMemberComponent } from './edit-member/edit-member.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { PhotoEditComponent } from './photo-edit/photo-edit.component';
 
 
 @NgModule({
-  declarations: [ListMemberComponent,HomeMemberComponent,DetailMemberComponent, CardMemberComponent, EditMemberComponent],
+  declarations: [ListMemberComponent,HomeMemberComponent,DetailMemberComponent, CardMemberComponent, EditMemberComponent, PhotoEditComponent],
   imports: [
     CommonModule,
     MembersRoutingModule,
