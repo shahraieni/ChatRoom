@@ -29,6 +29,7 @@ export class AccountService {
   }
   setcurrentUser(user :User){
     this.currentuser.next(user);
+    
   }
 
 
