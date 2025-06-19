@@ -1,7 +1,7 @@
 import { HttpClient, HttpHandler, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment.prod';
-import { IMember, IMemberUpdate } from '../_model/member';
+import { IMember, IMemberUpdate, Photo } from '../_model/member';
 import { map, of, tap } from 'rxjs';
 
 
@@ -47,6 +47,12 @@ export class MemberService {
     return this.http.get<IMember>(`${this.baseUrl}/users/getUserById/${id}`);
   }
 
+   deletePhoto(photoId: number) {
+    return this.http.delete<Photo>(
+      `${this.baseUrl}/users/deletePhoto/${photoId}`
+    );
+  }
+
   updateMember(memberUpdate :IMemberUpdate){
     
       return  this.http.put<IMember>(`${this.baseUrl}/users/UpdateUser`,memberUpdate).pipe(
@@ -57,5 +63,9 @@ export class MemberService {
           return member
       }));
 
+  }
+
+  setMainPhoto(photoId :number){
+     return this.http.put<Photo>(`${this.baseUrl}/users/setMainPhoto/${photoId}` , {})
   }
 }
