@@ -57,9 +57,9 @@ export class PhotoEditComponent  implements OnInit {
       if (response) {
         const photo: Photo = JSON.parse(response);
         this.member.photos.push(photo);
-        // if (this.member.photos.length === 1) {
-        //   this.updateUserAndMemberPhotoUrl(photo);
-        // }
+        if (this.member.photos.length === 1) {
+          this.updateUserAndMemberPhotoUrl(photo);
+        }
       }
     };
   }
