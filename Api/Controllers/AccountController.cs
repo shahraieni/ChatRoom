@@ -17,12 +17,14 @@ namespace Api.Controllers
     public class AccountController :BaseApiController
     {
 
-         private readonly DataContext _context;
+        
          private readonly ITokenService _tokenService;
+        private readonly IAccountRepository _accountRepository;
 
-        public AccountController(DataContext context, ITokenService tokenService)
+        public AccountController(ITokenService tokenService ,IAccountRepository accountRepository)
         {
-            _context = context;
+            _accountRepository = accountRepository;
+
             _tokenService = tokenService;
         }
 
@@ -36,7 +38,7 @@ namespace Api.Controllers
         {
 
 
-                  if(await IsExistUserName(model.userName))
+                  if(await _accountRepository.IsExistUserName(model.userName))
                         return BadRequest(new ApiResponse (400,  "نام کاربری تکراری میباشد"));
 
                using var  hmac = new HMACSHA512();
@@ -48,9 +50,9 @@ namespace Api.Controllers
                 PasswordHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(model.Password))
                };
 
-                await _context.Users.AddAsync(user);
+            await _accountRepository.AddUser(user);
 
-                if(await _context.SaveChangesAsync() > 0)
+                if(await _accountRepository.SaveChangeAsync())
                 {
 
 
@@ -74,8 +76,8 @@ namespace Api.Controllers
 
         public async Task<ActionResult<UserTokenDto>> Login([FromBody]LoginDto model)
         {
-            var user = _context.Users.SingleOrDefault(x=> x.UserName.ToLower() == model.userName.ToLower());
-
+            var user = await  _accountRepository.GetUserByUserNameWithPhotos(model.userName);
+   
             if(user == null) return BadRequest( new ApiResponse(400,"نام کاربری یافت نشد"));
 
              using var  hmac = new HMACSHA512(user.PasswordSalt);
@@ -87,17 +89,21 @@ namespace Api.Controllers
                 if(computedHash[i] != user.PasswordHash[i]) return BadRequest( new ApiResponse(400,"رمز عبور اشتباه است"));
              }
 
-             return Ok( new UserTokenDto{
-                    userName = user.UserName,
-                    Token = _tokenService.CreateToken(user)
+             return Ok( new UserTokenDto
+             {
+                 userName = user.UserName,
+                 Token = _tokenService.CreateToken(user),
+                 PhotoUrl = user?.Photos?.FirstOrDefault(x=>x.IsMain)?.Url,
 
                 });
         }
 
 
-         private async Task<bool> IsExistUserName(string userName)
-        {
-            return await _context.Users.AnyAsync(x => x.UserName.ToLower() == userName.ToLower());
-        }
+        //  private async Task<bool> IsExistUserName(string userName)
+        // {
+        //     return await _context.Users.AnyAsync(x => x.UserName.ToLower() == userName.ToLower());
+        // }
     }
 }
+
+

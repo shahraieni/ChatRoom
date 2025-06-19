@@ -103,6 +103,23 @@ namespace Api.Controllers
             return BadRequest(new ApiResponse(400, "عملیات با شکست روبرو شد"));
             
         }
+
+          [HttpPut("SetMainPhoto/{photoId}")]
+        public async Task<ActionResult<PhotoDto>> SetMainPhoto(int photoId)
+        {
+            var user = await _userRepository.GetUserByUserNameWithPhotos(HttpContext.User.GetUserName());
+            if (user == null) return NotFound(new ApiResponse(404, "کاربری یافت نشد"));
+            var photo = user.Photos.FirstOrDefault(x => x.Id == photoId);
+            if (photo == null) return NotFound(new ApiResponse(404, "تصویری یافت نشد"));
+            if (photo.IsMain) return BadRequest(new ApiResponse(400, "این تصویر به عنوان تصویر پیش فرض میباشد "));
+
+            var mainPhoto = user.Photos.FirstOrDefault(x => x.IsMain);
+            mainPhoto.IsMain = false;
+            photo.IsMain = true;
+            _userRepository.Update(user);
+            if (await _userRepository.SaveAllAsync()) return NoContent();
+            return BadRequest(new ApiResponse(400));
+        }
  
     }
 }

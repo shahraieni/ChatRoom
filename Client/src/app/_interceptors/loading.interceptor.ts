@@ -6,7 +6,7 @@ import {
   HttpInterceptor,
   HttpEventType
 } from '@angular/common/http';
-import { Observable, tap } from 'rxjs';
+import { finalize, Observable, tap } from 'rxjs';
 import { BusyService } from '../_services/busy.service';
 
 @Injectable()
@@ -17,6 +17,9 @@ export class LoadingInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     this.busyService.showBusy();
     return next.handle(request).pipe(
+      finalize(()=>{
+          this.busyService.hideBusy();
+      }),
       tap((event)=>{
         if(event.type === HttpEventType.Sent){
 

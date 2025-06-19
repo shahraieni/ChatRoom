@@ -32,7 +32,10 @@
         </ul>
   
         <div class="dropdown mr-10" dropdown placement="bottom left"  *ngIf="(currentUser$  | async) as user"    >
-  
+             <img 
+             style="max-width: 50px; border-radius: 50%;"
+             class="img-thumbnail m-1"
+             [src]="user.photoUrl || './assets/user.png'" [alt]="user.userName"> 
           <a class="btn btn-secondary dropdown-toggle" role="button" dropdownToggle id="dropdownMenuLink"
             data-bs-toggle="dropdown" aria-expanded="false">
             خوش آمدید {{user.userName}}
