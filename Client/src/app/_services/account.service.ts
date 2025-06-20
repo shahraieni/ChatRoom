@@ -17,7 +17,7 @@ export class AccountService {
   constructor(private _http:HttpClient) { }
 
   login( login : IRequestLogin ){
-    return     this._http.post<User>(`${this.baseUrl}/account/login`,login).pipe(
+    return   this._http.post<User>(`${this.baseUrl}/account/login`,login).pipe(
       map((response : User)=>{
         if(response.userName && response.token){
           localStorage.setItem("user",JSON.stringify(response));
@@ -47,6 +47,10 @@ export class AccountService {
     )
   
 }
+
+    isExistUserName(userName : string){
+       return   this._http.get<boolean>(`${this.baseUrl}/account/IsExistUserName/${userName}`,)
+    }
 
   logout(){
     localStorage.removeItem("user");

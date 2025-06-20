@@ -6,3 +6,5 @@ Api/obj/Debug
 .vs/
 node_modules
 
+.vs/ChatRoom/
+.vs/ChatRoom/v17/.suo

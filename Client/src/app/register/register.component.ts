@@ -4,6 +4,8 @@ import { AccountService } from '../_services/account.service';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { IRequestRegister } from '../_model/account';
+import { MatchPasswordService } from '../_validators/match-password.service';
+import { UniqueUserNameService } from '../_validators/uniqe-user-name.service';
 
 @Component({
   selector: 'app-register',
@@ -13,7 +15,13 @@ import { IRequestRegister } from '../_model/account';
 export class RegisterComponent   implements OnInit  {
 
 @Output() close  = new EventEmitter()
-   constructor(private accountService : AccountService  , private router : Router , private toast: ToastrService){}
+   constructor(
+    private accountService : AccountService  ,
+    private router : Router ,
+    private toast: ToastrService,
+    private matchPassword :MatchPasswordService,
+    private uniqUseName : UniqueUserNameService
+    ){}
 
   form = new FormGroup(
     {
@@ -22,9 +30,7 @@ export class RegisterComponent   implements OnInit  {
           Validators.required,
           Validators.minLength(3),
           Validators.maxLength(20),
-        ],
-       
-      ),
+        ],[this.uniqUseName.validate.bind(this.uniqUseName)]),
       password: new FormControl('', [
         Validators.required,
         Validators.minLength(5),
@@ -52,12 +58,23 @@ export class RegisterComponent   implements OnInit  {
     //   ]),
     //   dateOfBirth: new FormControl('', [Validators.required]),
     //   gender: new FormControl('0', [Validators.required]), //radio select option
-    },
+    },{validators : [this.matchPassword.validate.bind(this.matchPassword)]}
   )
 
 
 
+  showValidatorForMatchPassword(){
 
+    return (
+      this.form.dirty && 
+      this.form.get('password').touched &&
+      this.form.get('passwordConfirm').touched &&
+      this.form.get('password').dirty &&
+      this.form.get('passwordConfirm').dirty &&
+      this.form.errors
+    );
+
+  }
 
 
   ngOnInit(): void {

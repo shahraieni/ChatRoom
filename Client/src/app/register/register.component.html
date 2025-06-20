@@ -9,6 +9,9 @@
                   <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">
                     Sign up
                   </p>
+                  {{form.value | json}} <br>
+                  {{form.controls.userName.errors| json}} <br>
+                  {{form.status |json}}
                   <form
                     class="mx-1 mx-md-4"
                     [formGroup]="form"
@@ -30,46 +33,43 @@
                           class="form-control"
                           formControlName="userName"
                         />
-                        <!-- <ng-container
-                          *ngIf="
-                            form.get('userName').hasError &&
-                            form.get('userName').dirty &&
+                        <ng-container  *ngIf="  form.get('userName').hasError && form.get('userName').dirty &&
                             form.get('userName').touched &&
                             form.get('userName').invalid
                           "
                         >
                           <div
                             class="text-danger"
-                            *ngIf="form.get('userName').errors.required"
+                            *ngIf="form.get('userName').errors['required']"
                           >
                             Username is required
                           </div>
                           <div
                             class="text-danger"
-                            *ngIf="form.get('userName').errors.minlength"
+                            *ngIf="form.get('userName').errors['minlength']"
                           >
                             Username must be at least
                             {{
-                              form.get("userName").errors.minlength.requiredLength
+                              form.get("userName").errors['minlength'].requiredLength
                             }}
                             characters
                             {{
-                              form.get("userName").errors.minlength.actualLength
+                              form.get("userName").errors['minlength'].actualLength
                             }}
                           </div>
                           <div
                             class="text-danger"
-                            *ngIf="form.get('userName').errors.maxlength"
+                            *ngIf="form.get('userName').errors['maxlength']"
                           >
                             Username must be less than 50 characters
                           </div>
                           <div
                             class="text-danger"
-                            *ngIf="form.get('userName').errors.uniqueUsername"
+                            *ngIf="form.get('userName').errors['uniqueUserName']"
                           >
                             Username is already taken
                           </div>
-                        </ng-container> -->
+                        </ng-container>
                       </div>
                     </div>
                     <!-- Password -->
@@ -81,8 +81,14 @@
                           placeholder="please enter password"
                           class="form-control"
                           formControlName="password"
+                           [ngClass]="{
+                            'is-invalid':
+                              form.get('password').invalid &&
+                              form.get('password').touched &&
+                              form.get('password').dirty
+                          }"
                         />
-                        <!-- <ng-container
+                        <ng-container
                           *ngIf="
                             form.get('password').hasError &&
                             form.get('password').dirty &&
@@ -92,30 +98,30 @@
                         >
                           <div
                             class="text-danger"
-                            *ngIf="form.get('password').errors.required"
+                            *ngIf="form.get('password').errors['required']"
                           >
                             password is required
                           </div>
                           <div
                             class="text-danger"
-                            *ngIf="form.get('password').errors.minlength"
+                            *ngIf="form.get('password').errors['minlength']"
                           >
                             password must be at least
                             {{
-                              form.get("password").errors.minlength.requiredLength
+                              form.get("password").errors['minlength'].requiredLength
                             }}
                             characters
                             {{
-                              form.get("password").errors.minlength.actualLength
+                              form.get("password").errors['minlength'].actualLength
                             }}
                           </div>
                           <div
                             class="text-danger"
-                            *ngIf="form.get('password').errors.maxlength"
+                            *ngIf="form.get('password').errors['maxlength']"
                           >
                             password must be less than 50 characters
                           </div>
-                        </ng-container> -->
+                        </ng-container>
                       </div>
                     </div>
                     <!-- Password Confirm -->
@@ -127,8 +133,14 @@
                           placeholder="please repeat password"
                           class="form-control"
                           formControlName="passwordConfirm"
+                           [ngClass]="{
+                            'is-invalid':
+                              form.get('passwordConfirm').invalid &&
+                              form.get('passwordConfirm').touched &&
+                              form.get('passwordConfirm').dirty
+                          }"
                         />
-                        <!-- <ng-container
+                        <ng-container
                           *ngIf="
                             form.get('passwordConfirm').hasError &&
                             form.get('passwordConfirm').dirty &&
@@ -138,39 +150,39 @@
                         >
                           <div
                             class="text-danger"
-                            *ngIf="form.get('passwordConfirm').errors.required"
+                            *ngIf="form.get('passwordConfirm').errors['required']"
                           >
                             Password Confirm is required
                           </div>
                           <div
                             class="text-danger"
-                            *ngIf="form.get('passwordConfirm').errors.minlength"
+                            *ngIf="form.get('passwordConfirm').errors['minlength']"
                           >
                             Password Confirm must be at least
                             {{
-                              form.get("passwordConfirm").errors.minlength
+                              form.get("passwordConfirm").errors['minlength']
                                 .requiredLength
                             }}
                             characters
                             {{
-                              form.get("passwordConfirm").errors.minlength
+                              form.get("passwordConfirm").errors['minlength']
                                 .actualLength
                             }}
                           </div>
                           <div
                             class="text-danger"
-                            *ngIf="form.get('passwordConfirm').errors.maxlength"
+                            *ngIf="form.get('passwordConfirm').errors['maxlength']"
                           >
                             Password Confirm must be less than 50 characters
                           </div>
-                        </ng-container> -->
+                        </ng-container>
                         <!-- Validator Form -->
-                        <!-- <div
+                        <div
                           class="text-danger"
                           *ngIf="showValidatorForMatchPassword()"
                         >
                           Password Confirm must match password
-                        </div> -->
+                        </div>
                       </div>
                     </div>
                     <!-- knownAs -->
@@ -394,6 +406,7 @@
                       </div>
                     </div> -->
                     <!-- Submit -->
+                     
                     <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
                       <button
                         [disabled]="form.invalid"

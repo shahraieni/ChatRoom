@@ -98,11 +98,11 @@ namespace Api.Controllers
                 });
         }
 
-
-        //  private async Task<bool> IsExistUserName(string userName)
-        // {
-        //     return await _context.Users.AnyAsync(x => x.UserName.ToLower() == userName.ToLower());
-        // }
+        [HttpGet("IsExistUserName/{userName}")]
+        public async Task<bool> IsExistUserName(string userName)
+        {
+            return await _accountRepository.IsExistUserName(userName);
+        }
     }
 }
 
