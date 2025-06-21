@@ -9,9 +9,7 @@
                   <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">
                     Sign up
                   </p>
-                  {{form.value | json}} <br>
-                  {{form.controls.userName.errors| json}} <br>
-                  {{form.status |json}}
+              
                   <form
                     class="mx-1 mx-md-4"
                     [formGroup]="form"
@@ -186,7 +184,7 @@
                       </div>
                     </div>
                     <!-- knownAs -->
-                    <!-- <div class="d-flex flex-row align-items-center mb-4">
+                    <div class="d-flex flex-row align-items-center mb-4">
                       <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                       <div class="form-outline flex-fill mb-0">
                         <input
@@ -211,34 +209,34 @@
                         >
                           <div
                             class="text-danger"
-                            *ngIf="form.get('knownAs').errors.required"
+                            *ngIf="form.get('knownAs').errors['required']"
                           >
                             knownAs is required
                           </div>
                           <div
                             class="text-danger"
-                            *ngIf="form.get('knownAs').errors.minlength"
+                            *ngIf="form.get('knownAs').errors['minlength']"
                           >
                             knownAs must be at least
                             {{
-                              form.get("knownAs").errors.minlength.requiredLength
+                              form.get("knownAs").errors['minlength'].requiredLength
                             }}
                             characters
                             {{
-                              form.get("knownAs").errors.minlength.actualLength
+                              form.get("knownAs").errors['minlength'].actualLength
                             }}
                           </div>
                           <div
                             class="text-danger"
-                            *ngIf="form.get('knownAs').errors.maxlength"
+                            *ngIf="form.get('knownAs').errors['maxlength']"
                           >
                             knownAs must be less than 50 characters
                           </div>
                         </ng-container>
                       </div>
-                    </div> -->
+                    </div>
                     <!-- city -->
-                    <!-- <div class="d-flex flex-row align-items-center mb-4">
+                    <div class="d-flex flex-row align-items-center mb-4">
                       <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                       <div class="form-outline flex-fill mb-0">
                         <input
@@ -263,30 +261,30 @@
                         >
                           <div
                             class="text-danger"
-                            *ngIf="form.get('city').errors.required"
+                            *ngIf="form.get('city').errors['required']"
                           >
                             city is required
                           </div>
                           <div
                             class="text-danger"
-                            *ngIf="form.get('city').errors.minlength"
+                            *ngIf="form.get('city').errors['minlength']"
                           >
                             city must be at least
-                            {{ form.get("city").errors.minlength.requiredLength }}
+                            {{ form.get("city").errors['minlength'].requiredLength }}
                             characters
-                            {{ form.get("city").errors.minlength.actualLength }}
+                            {{ form.get("city").errors['minlength'].actualLength }}
                           </div>
                           <div
                             class="text-danger"
-                            *ngIf="form.get('city').errors.maxlength"
+                            *ngIf="form.get('city').errors['maxlength']"
                           >
                             city must be less than 50 characters
                           </div>
                         </ng-container>
                       </div>
-                    </div> -->
+                    </div>
                     <!-- country -->
-                    <!-- <div class="d-flex flex-row align-items-center mb-4">
+                    <div class="d-flex flex-row align-items-center mb-4">
                       <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                       <div class="form-outline flex-fill mb-0">
                         <input
@@ -311,40 +309,41 @@
                         >
                           <div
                             class="text-danger"
-                            *ngIf="form.get('country').errors.required"
+                            *ngIf="form.get('country').errors['required']"
                           >
                             country is required
                           </div>
                           <div
                             class="text-danger"
-                            *ngIf="form.get('country').errors.minlength"
+                            *ngIf="form.get('country').errors['minlength']"
                           >
                             country must be at least
                             {{
-                              form.get("country").errors.minlength.requiredLength
+                              form.get("country").errors['minlength'].requiredLength
                             }}
                             characters
                             {{
-                              form.get("country").errors.minlength.actualLength
+                              form.get("country").errors['minlength'].actualLength
                             }}
                           </div>
                           <div
                             class="text-danger"
-                            *ngIf="form.get('country').errors.maxlength"
+                            *ngIf="form.get('country').errors['maxlength']"
                           >
                             country must be less than 50 characters
                           </div>
                         </ng-container>
                       </div>
-                    </div> -->
+                    </div>
                     <!-- dateOfBirth -->
-                    <!-- <div class="d-flex flex-row align-items-center mb-4">
+                    <div class="d-flex flex-row align-items-center mb-4">
                       <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                       <div class="form-outline flex-fill mb-0">
                         <input
+                        [bsConfig]="bsConfig"
+                        bdDatepicker
                           placeholder="please enter dateOfBirth"
                           type="text"
-                          [bsConfig]="bsConfig"
                           [maxDate]="maxDate"
                           bsDatepicker
                           [ngClass]="{
@@ -366,15 +365,15 @@
                         >
                           <div
                             class="text-danger"
-                            *ngIf="form.get('dateOfBirth').errors.required"
+                            *ngIf="form.get('dateOfBirth').errors['required']"
                           >
                             dateOfBirth is required
                           </div>
                         </ng-container>
                       </div>
-                    </div> -->
+                    </div>
                     <!-- gender -->
-                    <!-- <div class="d-flex flex-row align-items-center mb-4">
+                    <div class="d-flex flex-row align-items-center mb-4">
                       <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                       <div class="form-outline flex-fill mb-0">
                         <div class="form-check">
@@ -404,7 +403,7 @@
                           </label>
                         </div>
                       </div>
-                    </div> -->
+                    </div>
                     <!-- Submit -->
                      
                     <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">

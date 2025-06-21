@@ -8,6 +8,7 @@ using Api.Entites;
 using Api.interfaces;
 using Api.Models;
 using API.Errors;
+using AutoMapper;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -18,11 +19,14 @@ namespace Api.Controllers
     {
 
         
-         private readonly ITokenService _tokenService;
+        private readonly ITokenService _tokenService;
         private readonly IAccountRepository _accountRepository;
+        private readonly IMapper _mapper;
 
-        public AccountController(ITokenService tokenService ,IAccountRepository accountRepository)
+        public AccountController(ITokenService tokenService ,IAccountRepository accountRepository , IMapper mapper)
         {
+            _mapper = mapper;
+
             _accountRepository = accountRepository;
 
             _tokenService = tokenService;
@@ -42,15 +46,10 @@ namespace Api.Controllers
                         return BadRequest(new ApiResponse (400,  "نام کاربری تکراری میباشد"));
 
                using var  hmac = new HMACSHA512();
-
-               var user = new Users 
-               {
-                UserName = model. userName,
-                PasswordSalt = hmac.Key,
-                PasswordHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(model.Password))
-               };
-
-            await _accountRepository.AddUser(user);
+                var user = _mapper.Map<Users>(model);
+                user.PasswordSalt = hmac.Key;
+                user.PasswordHash = hmac.ComputeHash(System.Text.Encoding.UTF8.GetBytes(model.Password));
+                await _accountRepository.AddUser(user);
 
                 if(await _accountRepository.SaveChangeAsync())
                 {

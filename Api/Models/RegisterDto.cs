@@ -19,5 +19,28 @@ namespace Api.Models
         [MaxLength(20,ErrorMessage ="بیشترین کاراکتر 20 میباشد ")]
         [MinLength(5, ErrorMessage ="کمترین کارکتر 5 میباشد")]
         public string Password { get; set; }
+
+         [Display(Name = "جنسیت")]
+        [Required(ErrorMessage = "لطفا {0} را وارد نمائید")]
+        public int Gender { get; set; }
+
+        [Display(Name = "تاریخ تولد")]
+        [Required(ErrorMessage = "لطفا {0} را وارد نمائید")]
+        [DataType(DataType.Date, ErrorMessage = "لطفا مقدار {0} را صحیح وارد کنید")]
+        public DateTime DateOfBirth { get; set; }
+
+        [Display(Name = "نام مستعار")]
+        [Required(ErrorMessage = "لطفا {0} را وارد نمائید")]
+        public string KnownAs { get; set; }
+
+        [Display(Name = "شعر")]
+        [Required(ErrorMessage = "لطفا {0} را وارد نمائید")]
+        public string City { get; set; }
+        
+        [Display(Name = "کشور")]
+        [Required(ErrorMessage = "لطفا {0} را وارد نمائید")]
+        public string Country { get; set; }
+
+
     }
 }

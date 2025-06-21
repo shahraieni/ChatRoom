@@ -33,7 +33,7 @@ export class AccountService {
   }
 
 
-  register(rejecter:IRequestRegister){
+  register(rejecter:any){
     return   this._http.post<User>(`${this.baseUrl}/account/register`,rejecter).pipe(
       map((response : User)=>{
         if(response.userName && response.token){

@@ -6,6 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 import { IRequestRegister } from '../_model/account';
 import { MatchPasswordService } from '../_validators/match-password.service';
 import { UniqueUserNameService } from '../_validators/uniqe-user-name.service';
+import { BsDatepickerConfig } from 'ngx-bootstrap/datepicker';
 
 @Component({
   selector: 'app-register',
@@ -14,14 +15,18 @@ import { UniqueUserNameService } from '../_validators/uniqe-user-name.service';
 })
 export class RegisterComponent   implements OnInit  {
 
-@Output() close  = new EventEmitter()
+@Output() close  = new EventEmitter();
+bsConfig: Partial<BsDatepickerConfig>;
+  maxDate: Date = new Date(); // 2021
    constructor(
     private accountService : AccountService  ,
     private router : Router ,
     private toast: ToastrService,
     private matchPassword :MatchPasswordService,
     private uniqUseName : UniqueUserNameService
-    ){}
+    ){
+       this.configDate();
+    }
 
   form = new FormGroup(
     {
@@ -41,23 +46,23 @@ export class RegisterComponent   implements OnInit  {
         Validators.minLength(5),
         Validators.maxLength(20),
       ]),
-    //   knownAs: new FormControl('', [
-    //     Validators.required,
-    //     Validators.minLength(3),
-    //     Validators.maxLength(20),
-    //   ]),
-    //   city: new FormControl('', [
-    //     Validators.required,
-    //     Validators.minLength(3),
-    //     Validators.maxLength(20),
-    //   ]),
-    //   country: new FormControl('', [
-    //     Validators.required,
-    //     Validators.minLength(3),
-    //     Validators.maxLength(20),
-    //   ]),
-    //   dateOfBirth: new FormControl('', [Validators.required]),
-    //   gender: new FormControl('0', [Validators.required]), //radio select option
+      knownAs: new FormControl('', [
+        Validators.required,
+        Validators.minLength(3),
+        Validators.maxLength(20),
+      ]),
+      city: new FormControl('', [
+        Validators.required,
+        Validators.minLength(3),
+        Validators.maxLength(20),
+      ]),
+      country: new FormControl('', [
+        Validators.required,
+        Validators.minLength(3),
+        Validators.maxLength(20),
+      ]),
+      dateOfBirth: new FormControl('', [Validators.required]),
+      gender: new FormControl('0', [Validators.required]), //radio select option
     },{validators : [this.matchPassword.validate.bind(this.matchPassword)]}
   )
 
@@ -76,6 +81,18 @@ export class RegisterComponent   implements OnInit  {
 
   }
 
+    private configDate() {
+    this.bsConfig = Object.assign(
+      {},
+      {
+        containerClass: 'theme-dark-blue',
+        dateInputFormat: 'DD/MM/YYYY',
+        Animation: 'true',
+      }
+    );
+    this.maxDate.setFullYear(this.maxDate.getFullYear() - 18); //2021-18 = 2003
+  }
+
 
   ngOnInit(): void {
    
@@ -84,7 +101,7 @@ export class RegisterComponent   implements OnInit  {
 
   onSubmit() {
     debugger
-    this.accountService.register(this.form.value  as IRequestRegister).subscribe((user) => {
+    this.accountService.register(this.form.value ).subscribe((user) => {
    
        this.router.navigateByUrl("/members");
        this.toast.success("ورود شما با موفقیت انجام شد ","موفقیت")
