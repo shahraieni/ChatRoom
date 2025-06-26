@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Api.Data;
 using Api.Entites;
 using Api.extensions;
+using Api.Helpers;
 using Api.interfaces;
 using Api.Models;
 using API.Errors;
@@ -38,10 +39,12 @@ namespace Api.Controllers
 
         [HttpGet("GetAllUsers")]
 
-        public async Task<ActionResult<IEnumerable<MemberDto>>> GetUsers()
+        public async Task<ActionResult<PagedList<MemberDto>>> GetUsers([FromQuery]UserParams userParams)
         {
+            var users = await _userRepository.GetAllUsersMemberDto(userParams);
+            Response.AddPaginationHeader(users.CurrentPage, itemParPage: users.PageSize, totalItems:  users.TotalCount, totalPages: users.TotalPage);
 
-            return Ok(await _userRepository.GetAllUsersMemberDto());
+            return Ok(users);
         }
 
         [HttpGet("getUserById/{id:int}")]

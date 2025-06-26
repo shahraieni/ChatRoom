@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Api.Data;
 using Api.Entites;
+using Api.Helpers;
 using Api.interfaces;
 using Api.Models;
 using AutoMapper;
@@ -29,9 +30,10 @@ namespace Api.services
             return await _context.Users.ToListAsync();
         }
 
-        public async Task<IEnumerable<MemberDto>> GetAllUsersMemberDto()
+        public async Task<PagedList<MemberDto>> GetAllUsersMemberDto(UserParams userParams)
         {
-            return await _context.Users.ProjectTo<MemberDto>(_mapper.ConfigurationProvider).ToListAsync();
+            var query =  _context.Users.ProjectTo<MemberDto>(_mapper.ConfigurationProvider);
+            return await PagedList<MemberDto>.CreateAsync(query, userParams.PageNumber, userParams.PageSize);
         }
 
         public async Task<MemberDto> GetMemberDtoById(int userId)
