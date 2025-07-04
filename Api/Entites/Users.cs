@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
+using Api.Enums;
 using Api.extensions;
 
 namespace Api.Entites
@@ -12,7 +13,7 @@ namespace Api.Entites
     {
         [Key]
         public int Id { get; set; }
-        public int Gender { get; set; }
+        public GenderEnum Gender { get; set; }
         public string UserName { get; set; }
         public byte[] PasswordHash { get; set; }
         public byte[]  PasswordSalt { get; set; }

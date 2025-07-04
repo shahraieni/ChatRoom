@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Api.Enums;
 using Api.extensions;
 
 namespace Api.Models
@@ -10,8 +11,8 @@ namespace Api.Models
     {
 
         public int Id { get; set; }
-        public int Gender { get; set; }
-        public string DateOfBirth { get; set; }
+        public GenderEnum Gender { get; set; }
+        public DateTime DateOfBirth { get; set; }
         public string KnownAs { get; set; }
         public string Introduction { get; set; }
         public string LookingFor { get; set; }

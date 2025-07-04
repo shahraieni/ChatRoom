@@ -32,8 +32,16 @@ namespace Api.services
 
         public async Task<PagedList<MemberDto>> GetAllUsersMemberDto(UserParams userParams)
         {
-            var query =  _context.Users.ProjectTo<MemberDto>(_mapper.ConfigurationProvider);
-            return await PagedList<MemberDto>.CreateAsync(query, userParams.PageNumber, userParams.PageSize);
+            var query = _context.Users.AsNoTracking();
+            query = query.Where(x => x.UserName != userParams.currentUserName);
+            query = query.Where(x => x.Gender == userParams.Gender);
+            var minDate = DateTime.Today.AddYears(-userParams.MaxAge - 1);
+            var maxDate = DateTime.Today.AddYears(-userParams.MinAge );
+
+            query = query.Where(x => x.DateOfBirth.Date >= minDate.Date && x.DateOfBirth.Date <= maxDate.Date);
+            var result = query.ProjectTo<MemberDto>(_mapper.ConfigurationProvider);
+
+            return await PagedList<MemberDto>.CreateAsync(result, userParams.PageNumber, userParams.PageSize);
         }
 
         public async Task<MemberDto> GetMemberDtoById(int userId)
