@@ -34,3 +34,33 @@ export interface Photo {
   url: string;
   isMain: boolean;
 }
+
+export class UserParams{
+
+ 
+  pageNumber  = 1;
+  gender = Gender.male;
+  minAge = 18 ;
+  maxAge = 150;
+  pageSize = 8 ;
+  orderBy = OrderBy.age;
+  typeSort = TypeSort.asc
+
+}
+
+export enum Gender{
+  female,
+  male
+}
+
+ export enum OrderBy  {
+     lastActive,
+     created,
+      age,
+    }
+
+
+  export enum TypeSort  {
+        asc,
+        desc
+    }

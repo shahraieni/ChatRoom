@@ -1,7 +1,7 @@
 import { HttpClient, HttpHandler, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment.prod';
-import { IMember, IMemberUpdate, Photo } from '../_model/member';
+import { IMember, IMemberUpdate, Photo, UserParams } from '../_model/member';
 import { map, of, tap } from 'rxjs';
 import { PaginatedResult } from '../_model/pagination';
 
@@ -23,15 +23,10 @@ export class MemberService {
   constructor(private http:HttpClient) { }
 
 
-  getMembers(pageNumber : number , pageSize:number ) {
+  getMembers(userParams: UserParams ) {
 
     // if(this.members.length > 0) return of(this.members);
-    let params = new HttpParams();
-
-    if(pageNumber !== null && pageSize !== null){
-      params = params.append("pageNumber" , pageNumber.toString());
-      params = params.append("pageSize" , pageSize.toString());
-    }
+    let params = this.setParams(userParams);
 
     return   this.http.get<PaginatedResult<IMember[]>>(`${this.baseUrl}/users/getAllUsers`,{params})
     .pipe(
@@ -82,5 +77,21 @@ export class MemberService {
 
   setMainPhoto(photoId :number){
      return this.http.put<Photo>(`${this.baseUrl}/users/setMainPhoto/${photoId}` , {})
+  }
+
+  private setParams(userParams :UserParams){
+    let params = new HttpParams();
+
+      if(userParams.pageNumber !== null && userParams.pageSize !== null){
+      params = params.append("pageNumber" , userParams.pageNumber.toString());
+      params = params.append("pageSize" , userParams.pageSize.toString());
+      params = params.append("minAge" , userParams.minAge.toString());
+      params = params.append("maxAge" , userParams.maxAge.toString());
+      params = params.append("gender" , userParams.gender.toString());
+      params = params.append("orderBy" , userParams.orderBy.toString());
+      params = params.append("typeSort" , userParams.typeSort.toString());
+      }
+      return params;
+
   }
 }

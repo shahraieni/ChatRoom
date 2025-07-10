@@ -39,6 +39,32 @@ namespace Api.services
             var maxDate = DateTime.Today.AddYears(-userParams.MinAge );
 
             query = query.Where(x => x.DateOfBirth.Date >= minDate.Date && x.DateOfBirth.Date <= maxDate.Date);
+
+            if (userParams.TypeSort == TypeSort.desc)
+            {
+
+                query = userParams.OrderBy switch
+                {
+
+                    OrderByEnum.lastActive => query.OrderByDescending(x => x.LastActive),
+                    OrderByEnum.created => query.OrderByDescending(x => x.Created),
+                    OrderByEnum.age => query.OrderByDescending(x => x.DateOfBirth),
+                    _ => query.OrderByDescending(x => x.LastActive)
+                };
+            }
+            else
+            {
+                
+                   query = userParams.OrderBy switch
+                    {
+                    
+                        OrderByEnum.lastActive => query.OrderBy(x => x.LastActive),
+                        OrderByEnum.created => query.OrderBy(x => x.Created),
+                        OrderByEnum.age => query.OrderBy(x => x.DateOfBirth),
+                        _ => query.OrderBy(x=>x.LastActive)
+                    };  
+            }
+
             var result = query.ProjectTo<MemberDto>(_mapper.ConfigurationProvider);
 
             return await PagedList<MemberDto>.CreateAsync(result, userParams.PageNumber, userParams.PageSize);

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
-import { IMember } from 'src/app/_model/member';
+import { Gender, IMember, OrderBy, TypeSort, UserParams } from 'src/app/_model/member';
 import { IPagination, PaginatedResult } from 'src/app/_model/pagination';
 import { MemberService } from 'src/app/_services/member.service';
 
@@ -11,25 +11,34 @@ import { MemberService } from 'src/app/_services/member.service';
 })
 export class ListMemberComponent  implements OnInit {
 
-  
- result:PaginatedResult<IMember[]>
-  pageNumber = 1;
-  pageSize = 6;
+  userParams = new UserParams();
+ result:PaginatedResult<IMember[]>;
+ genders = Gender;
+ orderby = OrderBy;
+ typeSort = TypeSort;
 
   constructor(private memberService:MemberService){}
 
   ngOnInit(): void {
     this.loadMembers();
   }
+  ngSubmit(){
+    this.loadMembers();
+    
+  }
+  onClear(){
+    this.userParams = new UserParams();
+     this.loadMembers();
+  }
 
   pageChanged(event :any):void{
 
-    this.pageNumber = event.page;
+    this.userParams.pageNumber = event.page;
      this.loadMembers();
 
   }
   private loadMembers(){
-       this.memberService.getMembers(this.pageNumber,this.pageSize).subscribe((res)=>{
+       this.memberService.getMembers(this.userParams).subscribe((res)=>{
       this.result = res;
      
 

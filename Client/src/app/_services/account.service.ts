@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, map, ReplaySubject } from 'rxjs';
 import { IRequestLogin, IRequestRegister, User } from '../_model/account';
+import { environment } from 'src/environments/environment.prod';
 
 
 
@@ -9,7 +10,7 @@ import { IRequestLogin, IRequestRegister, User } from '../_model/account';
   providedIn: 'root'
 })
 export class AccountService {
-  private baseUrl = "https://localhost:5001/api";
+    private baseUrl= environment.baseUrl;
   private currentuser =  new ReplaySubject<User>(1);
 
   currentUser$  = this.currentuser.asObservable();

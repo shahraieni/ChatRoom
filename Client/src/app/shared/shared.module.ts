@@ -8,12 +8,13 @@ import { TabsModule } from 'ngx-bootstrap/tabs';
 import { NgxGalleryModule } from '@kolkov/ngx-gallery';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { FileUploadModule } from 'ng2-file-upload';
+import { ShowEnumPipe } from './_pipes/show-enum.pipe';
 
 
 
 
 @NgModule({
-  declarations: [],
+  declarations: [ShowEnumPipe],
   imports: [
     CommonModule,
     BsDropdownModule.forRoot(),
@@ -38,7 +39,8 @@ import { FileUploadModule } from 'ng2-file-upload';
     NgxSpinnerModule,
     FileUploadModule,
     BsDatepickerModule,
-    PaginationModule
+    PaginationModule,
+    ShowEnumPipe
   ]
 })
 export class SharedModule { }
