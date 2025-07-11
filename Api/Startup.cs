@@ -2,7 +2,7 @@ using Api.Data;
 using Api.Errors;
 using Api.extensions;
 using Api.interfaces;
-using Api.Meddielwares;
+using Api.Middlewares;
 using Api.services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;

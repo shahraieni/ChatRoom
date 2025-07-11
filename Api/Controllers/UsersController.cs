@@ -9,6 +9,7 @@ using Api.Entites;
 using Api.extensions;
 using Api.Helpers;
 using Api.interfaces;
+using Api.Middlewares;
 using Api.Models;
 using API.Errors;
 using AutoMapper;
@@ -21,7 +22,10 @@ using Microsoft.Extensions.Logging;
 
 namespace Api.Controllers
 {
-    // [Authorize]
+    //  <summary>
+    /// [Authorize]
+    /// </summary>
+    [ServiceFilter(typeof(LogUserActivity))]
     public class UsersController : BaseApiController
     {
 

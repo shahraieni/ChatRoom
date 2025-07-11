@@ -9,6 +9,7 @@ import { NgxGalleryModule } from '@kolkov/ngx-gallery';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { FileUploadModule } from 'ng2-file-upload';
 import { ShowEnumPipe } from './_pipes/show-enum.pipe';
+import { TimeagoModule } from "ngx-timeago";
 
 
 
@@ -29,7 +30,8 @@ import { ShowEnumPipe } from './_pipes/show-enum.pipe';
   NgxGalleryModule,
   FileUploadModule,
   BsDatepickerModule.forRoot(),
-  PaginationModule.forRoot()
+  PaginationModule.forRoot(),
+  TimeagoModule.forRoot(),
   ],
   exports :[
     BsDropdownModule,
@@ -40,7 +42,8 @@ import { ShowEnumPipe } from './_pipes/show-enum.pipe';
     FileUploadModule,
     BsDatepickerModule,
     PaginationModule,
-    ShowEnumPipe
+    ShowEnumPipe,
+    TimeagoModule
   ]
 })
 export class SharedModule { }
