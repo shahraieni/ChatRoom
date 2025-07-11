@@ -2,7 +2,7 @@ import { HttpClient, HttpHandler, HttpHeaders, HttpParams } from '@angular/commo
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment.prod';
 import { IMember, IMemberUpdate, Photo, UserParams } from '../_model/member';
-import { map, of, tap } from 'rxjs';
+import { map, Observable, of, tap } from 'rxjs';
 import { PaginatedResult } from '../_model/pagination';
 
 
@@ -17,23 +17,28 @@ import { PaginatedResult } from '../_model/pagination';
 export class MemberService {
 
   private baseUrl= environment.baseUrl;
+  private cacheMember = new Map<string , PaginatedResult<IMember[]>> ();
   private members:IMember[] = [];
+  private userParams  :UserParams = new UserParams();
   paginationResult:PaginatedResult<IMember[]> = new PaginatedResult<IMember[]>();
 
   constructor(private http:HttpClient) { }
 
 
-  getMembers(userParams: UserParams ) {
-
-    // if(this.members.length > 0) return of(this.members);
+  getMembers(userParams: UserParams ) : Observable<PaginatedResult<IMember[]>> {
+  const key = Object.values(userParams).join('-')
+   let response = this.cacheMember.get(key);
+  
+   
+   if(response && response !=null) return of(response);
     let params = this.setParams(userParams);
 
     return   this.http.get<PaginatedResult<IMember[]>>(`${this.baseUrl}/users/getAllUsers`,{params})
     .pipe(
       map((res)=>{
-        console.log(res);
         this.members = res.items;
         this.paginationResult = res;
+        this.cacheMember.set(key, res);
         return res;
         
       })
@@ -41,6 +46,11 @@ export class MemberService {
   }
 
   getMemberByUserName(userName :string){
+
+    let user = [...this.cacheMember]
+    .reduce((arr , [key , value]) => arr.concat(value.items),[])
+    .find((x)=>x.userName === userName);
+    if(user)return of(user);
 
     const member = this.members.find((x)=>x.userName === userName);
     if(member !== undefined) return of(member)
@@ -77,6 +87,17 @@ export class MemberService {
 
   setMainPhoto(photoId :number){
      return this.http.put<Photo>(`${this.baseUrl}/users/setMainPhoto/${photoId}` , {})
+  }
+
+  setUserParams(userParams :UserParams){
+      this.userParams = userParams;
+  }
+  getUserParams(){
+    return this.userParams;
+  }
+  resetUserParams(){
+    this.userParams = new UserParams();
+    return this.userParams;
   }
 
   private setParams(userParams :UserParams){

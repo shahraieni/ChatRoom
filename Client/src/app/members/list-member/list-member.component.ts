@@ -11,13 +11,15 @@ import { MemberService } from 'src/app/_services/member.service';
 })
 export class ListMemberComponent  implements OnInit {
 
-  userParams = new UserParams();
+  userParams:UserParams;
  result:PaginatedResult<IMember[]>;
  genders = Gender;
  orderby = OrderBy;
  typeSort = TypeSort;
 
-  constructor(private memberService:MemberService){}
+  constructor(private memberService:MemberService){
+    this.userParams = this.memberService.getUserParams();
+  }
 
   ngOnInit(): void {
     this.loadMembers();
@@ -27,13 +29,14 @@ export class ListMemberComponent  implements OnInit {
     
   }
   onClear(){
-    this.userParams = new UserParams();
+    this.userParams = this.memberService.resetUserParams();
      this.loadMembers();
   }
 
   pageChanged(event :any):void{
 
     this.userParams.pageNumber = event.page;
+    this.memberService.setUserParams(this.userParams);
      this.loadMembers();
 
   }
