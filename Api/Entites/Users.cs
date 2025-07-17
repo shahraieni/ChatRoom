@@ -31,7 +31,10 @@ namespace Api.Entites
         [InverseProperty("Users")]
         public ICollection<Photo> Photos { get; set; }
 
-         //get age
+        public ICollection<UserLike>   SourceUserlikes{ get; set; }
+        public ICollection<UserLike> TargetUserlikes { get; set; }
+
+        //get age
         public int GetAge()
         {
             return DateOfBirth.CalculateAge();
