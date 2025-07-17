@@ -66,8 +66,9 @@ namespace Api.services
             }
 
             var result = query.ProjectTo<MemberDto>(_mapper.ConfigurationProvider);
+            var items = await PagedList<MemberDto>.CreateAsync(result, userParams.PageNumber, userParams.PageSize);
 
-            return await PagedList<MemberDto>.CreateAsync(result, userParams.PageNumber, userParams.PageSize);
+            return items;
         }
 
         public async Task<MemberDto> GetMemberDtoById(int userId)

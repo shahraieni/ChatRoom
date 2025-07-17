@@ -1,13 +1,16 @@
 ﻿using Api.Data;
 using Api.Entites;
 using Api.Enums;
+using Api.Helpers;
 using Api.interfaces;
 using Api.Models;
 using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace Api.services
 {
@@ -24,7 +27,7 @@ namespace Api.services
         }
         public  async Task AddLike(int sourceId, int targetId)
         {
-            await _dataContext.UserLike.AddAsync(new UserLike(sourceId , targetId));
+            await _dataContext.UserLike.AddAsync(new UserLike { SourceUserId = sourceId, TargetUserId = targetId });
         }
 
         public async Task<UserLike> GetUserLike(int sourceId, int targetId)
@@ -32,19 +35,19 @@ namespace Api.services
             return await _dataContext.UserLike.FindAsync(sourceId, targetId);
         }
 
-        public async Task<IEnumerable<LikeDto>> GetUserLIkes(PredicateLikeEnum predicate, int userId)
+        public async Task<PagedList<LikeDto>> GetUserLIkes(GetLikeParams getLikeParams, int userId)
         {
             var users = _dataContext.Users.AsQueryable();
             var likes = _dataContext.UserLike.AsQueryable();
 
-            if(predicate == PredicateLikeEnum.liked)
+            if(getLikeParams.predicateUserLike == PredicateLikeEnum.liked)
             {
                 likes = likes.Include(x => x.TargetUser)
                     .ThenInclude(x => x.Photos)
                     .Where(x => x.SourceUserId == userId);
                 users = likes.Select(x => x.TargetUser);
             }
-            if(predicate == PredicateLikeEnum.likeby)
+            if(getLikeParams.predicateUserLike == PredicateLikeEnum.likeby)
             {
                 likes = likes.Include(x => x.SourceUser)
                    .ThenInclude(x => x.Photos)
@@ -52,8 +55,10 @@ namespace Api.services
                 users = likes.Select(x => x.SourceUser);
             }
 
-            return (await users.ToListAsync()).
-                Select(x => _mapper.Map<LikeDto>(x));
+            var result = users.ProjectTo<LikeDto>(_mapper.ConfigurationProvider);
+            var items = await PagedList<LikeDto>.CreateAsync(result, getLikeParams.PageNumber, getLikeParams.PageSize);
+
+            return items;
 
 
 
