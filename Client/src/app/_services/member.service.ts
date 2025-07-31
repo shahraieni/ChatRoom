@@ -4,9 +4,7 @@ import { environment } from 'src/environments/environment.prod';
 import { IMember, IMemberUpdate, Photo, UserParams } from '../_model/member';
 import { map, Observable, of, tap } from 'rxjs';
 import { PaginatedResult } from '../_model/pagination';
-
-
-
+import { PredicateLikeEnum, UserLikeParams } from '../_enums/LikeUser';
 
 @Injectable({
   providedIn: 'root'
@@ -73,6 +71,12 @@ export class MemberService {
     );
   }
 
+
+  addLike(targetUserName:string){
+    const params = new HttpParams().append('targetUserName' , targetUserName);
+    return this.http.post(`${this.baseUrl}/UserLike/Add-Like`, {}, {params});
+  }
+
   updateMember(memberUpdate :IMemberUpdate){
     
       return  this.http.put<IMember>(`${this.baseUrl}/users/UpdateUser`,memberUpdate).pipe(
@@ -94,6 +98,14 @@ export class MemberService {
   }
   getUserParams(){
     return this.userParams;
+  }
+
+  getUserLike( userLikeParams : UserLikeParams ){
+    let params = new HttpParams();
+    params = params.append('PageNumber' , userLikeParams.pageNumber);
+    params = params.append('PageSize' , userLikeParams.pageSize);
+    params = params.append('PredicateUserLike' , userLikeParams.predicateUserLike.toString());
+      return this.http.get<PaginatedResult<IMember[]>>(`${this.baseUrl}/UserLike/get-likes`,{params})
   }
   resetUserParams(){
     this.userParams = new UserParams();

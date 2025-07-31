@@ -10,12 +10,14 @@ import { NgxSpinnerModule } from 'ngx-spinner';
 import { FileUploadModule } from 'ng2-file-upload';
 import { ShowEnumPipe } from './_pipes/show-enum.pipe';
 import { TimeagoModule } from "ngx-timeago";
+import { MemberCardSharedComponent } from './member-card-shared/member-card-shared.component';
+import { RouterModule } from '@angular/router';
 
 
 
 
 @NgModule({
-  declarations: [ShowEnumPipe],
+  declarations: [ShowEnumPipe, MemberCardSharedComponent],
   imports: [
     CommonModule,
     BsDropdownModule.forRoot(),
@@ -32,6 +34,7 @@ import { TimeagoModule } from "ngx-timeago";
   BsDatepickerModule.forRoot(),
   PaginationModule.forRoot(),
   TimeagoModule.forRoot(),
+  RouterModule
   ],
   exports :[
     BsDropdownModule,
@@ -43,7 +46,9 @@ import { TimeagoModule } from "ngx-timeago";
     BsDatepickerModule,
     PaginationModule,
     ShowEnumPipe,
-    TimeagoModule
+    TimeagoModule,
+    MemberCardSharedComponent,
+     
   ]
 })
 export class SharedModule { }

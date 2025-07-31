@@ -12,7 +12,7 @@ namespace Api.interfaces
     {
         Task<UserLike> GetUserLike(int sorceId, int targetId);
         Task<Users> GetUserWithLike(int userId);
-        Task<PagedList<LikeDto>> GetUserLIkes(GetLikeParams getLikeParams, int userId);
+        Task<PagedList<MemberDto>> GetUserLIkes(GetLikeParams getLikeParams, int userId);
         Task AddLike(int sourceId, int targetId);
         Task<bool> Saveasync();
 

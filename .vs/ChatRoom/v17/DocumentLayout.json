@@ -3,6 +3,18 @@
   "WorkspaceRootPath": "D:\\projects\\ChatRoom\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{0CBAF6BE-9804-4E52-B2E5-AEE0F91D16F0}|Api\\Api.csproj|d:\\projects\\chatroom\\api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{0CBAF6BE-9804-4E52-B2E5-AEE0F91D16F0}|Api\\Api.csproj|solutionrelative:api\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0CBAF6BE-9804-4E52-B2E5-AEE0F91D16F0}|Api\\Api.csproj|d:\\projects\\chatroom\\api\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0CBAF6BE-9804-4E52-B2E5-AEE0F91D16F0}|Api\\Api.csproj|solutionrelative:api\\controllers\\accountcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0CBAF6BE-9804-4E52-B2E5-AEE0F91D16F0}|Api\\Api.csproj|d:\\projects\\chatroom\\api\\controllers\\userlikecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0CBAF6BE-9804-4E52-B2E5-AEE0F91D16F0}|Api\\Api.csproj|solutionrelative:api\\controllers\\userlikecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{0CBAF6BE-9804-4E52-B2E5-AEE0F91D16F0}|Api\\Api.csproj|d:\\projects\\chatroom\\api\\services\\userlikerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{0CBAF6BE-9804-4E52-B2E5-AEE0F91D16F0}|Api\\Api.csproj|solutionrelative:api\\services\\userlikerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -11,28 +23,24 @@
       "RelativeMoniker": "D:0:0:{0CBAF6BE-9804-4E52-B2E5-AEE0F91D16F0}|Api\\Api.csproj|solutionrelative:api\\interfaces\\iuserlikerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{0CBAF6BE-9804-4E52-B2E5-AEE0F91D16F0}|Api\\Api.csproj|d:\\projects\\chatroom\\api\\entites\\userlike.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0CBAF6BE-9804-4E52-B2E5-AEE0F91D16F0}|Api\\Api.csproj|solutionrelative:api\\entites\\userlike.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0CBAF6BE-9804-4E52-B2E5-AEE0F91D16F0}|Api\\Api.csproj|d:\\projects\\chatroom\\api\\controllers\\userlikecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0CBAF6BE-9804-4E52-B2E5-AEE0F91D16F0}|Api\\Api.csproj|solutionrelative:api\\controllers\\userlikecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{0CBAF6BE-9804-4E52-B2E5-AEE0F91D16F0}|Api\\Api.csproj|d:\\projects\\chatroom\\api\\extensions\\applicationsserviceextension.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0CBAF6BE-9804-4E52-B2E5-AEE0F91D16F0}|Api\\Api.csproj|solutionrelative:api\\extensions\\applicationsserviceextension.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{0CBAF6BE-9804-4E52-B2E5-AEE0F91D16F0}|Api\\Api.csproj|d:\\projects\\chatroom\\api\\extensions\\claimsprincipleextension.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{0CBAF6BE-9804-4E52-B2E5-AEE0F91D16F0}|Api\\Api.csproj|solutionrelative:api\\extensions\\claimsprincipleextension.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{0CBAF6BE-9804-4E52-B2E5-AEE0F91D16F0}|Api\\Api.csproj|d:\\projects\\chatroom\\api\\services\\tokenservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0CBAF6BE-9804-4E52-B2E5-AEE0F91D16F0}|Api\\Api.csproj|solutionrelative:api\\services\\tokenservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{0CBAF6BE-9804-4E52-B2E5-AEE0F91D16F0}|Api\\Api.csproj|d:\\projects\\chatroom\\api\\entites\\userlike.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{0CBAF6BE-9804-4E52-B2E5-AEE0F91D16F0}|Api\\Api.csproj|solutionrelative:api\\entites\\userlike.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{0CBAF6BE-9804-4E52-B2E5-AEE0F91D16F0}|Api\\Api.csproj|d:\\projects\\chatroom\\api\\services\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{0CBAF6BE-9804-4E52-B2E5-AEE0F91D16F0}|Api\\Api.csproj|solutionrelative:api\\services\\userrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0CBAF6BE-9804-4E52-B2E5-AEE0F91D16F0}|Api\\Api.csproj|d:\\projects\\chatroom\\api\\models\\getlikeparams.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0CBAF6BE-9804-4E52-B2E5-AEE0F91D16F0}|Api\\Api.csproj|solutionrelative:api\\models\\getlikeparams.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{0CBAF6BE-9804-4E52-B2E5-AEE0F91D16F0}|Api\\Api.csproj|d:\\projects\\chatroom\\api\\models\\basepagination.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{0CBAF6BE-9804-4E52-B2E5-AEE0F91D16F0}|Api\\Api.csproj|solutionrelative:api\\models\\basepagination.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{0CBAF6BE-9804-4E52-B2E5-AEE0F91D16F0}|Api\\Api.csproj|d:\\projects\\chatroom\\api\\models\\userparams.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -46,7 +54,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 4,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -54,7 +62,57 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "D:\\projects\\ChatRoom\\Api\\appsettings.json",
+              "RelativeDocumentMoniker": "Api\\appsettings.json",
+              "ToolTip": "D:\\projects\\ChatRoom\\Api\\appsettings.json",
+              "RelativeToolTip": "Api\\appsettings.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-07-31T13:59:22.096Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "AccountController.cs",
+              "DocumentMoniker": "D:\\projects\\ChatRoom\\Api\\Controllers\\AccountController.cs",
+              "RelativeDocumentMoniker": "Api\\Controllers\\AccountController.cs",
+              "ToolTip": "D:\\projects\\ChatRoom\\Api\\Controllers\\AccountController.cs",
+              "RelativeToolTip": "Api\\Controllers\\AccountController.cs",
+              "ViewState": "AQIAABQAAAAAAAAAAAAQwC0AAAAYAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-31T13:34:28.991Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ApplicationsServiceExtension.cs",
+              "DocumentMoniker": "D:\\projects\\ChatRoom\\Api\\extensions\\ApplicationsServiceExtension.cs",
+              "RelativeDocumentMoniker": "Api\\extensions\\ApplicationsServiceExtension.cs",
+              "ToolTip": "D:\\projects\\ChatRoom\\Api\\extensions\\ApplicationsServiceExtension.cs",
+              "RelativeToolTip": "Api\\extensions\\ApplicationsServiceExtension.cs",
+              "ViewState": "AQIAAAUAAAAAAAAAAAAewBoAAAAfAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-23T12:20:22.55Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "TokenService.cs",
+              "DocumentMoniker": "D:\\projects\\ChatRoom\\Api\\services\\TokenService.cs",
+              "RelativeDocumentMoniker": "Api\\services\\TokenService.cs",
+              "ToolTip": "D:\\projects\\ChatRoom\\Api\\services\\TokenService.cs",
+              "RelativeToolTip": "Api\\services\\TokenService.cs",
+              "ViewState": "AQIAAAUAAAAAAAAAAAArwBgAAAAIAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-07-17T12:17:05.506Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
               "Title": "UserLike.cs",
               "DocumentMoniker": "D:\\projects\\ChatRoom\\Api\\Entites\\UserLike.cs",
               "RelativeDocumentMoniker": "Api\\Entites\\UserLike.cs",
@@ -62,12 +120,11 @@
               "RelativeToolTip": "Api\\Entites\\UserLike.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAqwAoAAAAFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-17T09:29:38.707Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-17T09:29:38.707Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 9,
               "Title": "UserRepository.cs",
               "DocumentMoniker": "D:\\projects\\ChatRoom\\Api\\services\\UserRepository.cs",
               "RelativeDocumentMoniker": "Api\\services\\UserRepository.cs",
@@ -75,38 +132,35 @@
               "RelativeToolTip": "Api\\services\\UserRepository.cs",
               "ViewState": "AQIAACwAAAAAAAAAAAAwwEYAAAAZAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-17T09:10:41.415Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-17T09:10:41.415Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
               "Title": "IUserLikeRepository.cs",
               "DocumentMoniker": "D:\\projects\\ChatRoom\\Api\\interfaces\\IUserLikeRepository.cs",
               "RelativeDocumentMoniker": "Api\\interfaces\\IUserLikeRepository.cs",
               "ToolTip": "D:\\projects\\ChatRoom\\Api\\interfaces\\IUserLikeRepository.cs",
               "RelativeToolTip": "Api\\interfaces\\IUserLikeRepository.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA4AAABJAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABQAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-17T09:05:12.203Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-17T09:05:12.203Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 3,
               "Title": "UserLikeRepository.cs",
               "DocumentMoniker": "D:\\projects\\ChatRoom\\Api\\services\\UserLikeRepository.cs",
               "RelativeDocumentMoniker": "Api\\services\\UserLikeRepository.cs",
               "ToolTip": "D:\\projects\\ChatRoom\\Api\\services\\UserLikeRepository.cs",
               "RelativeToolTip": "Api\\services\\UserLikeRepository.cs",
-              "ViewState": "AQIAAAkAAAAAAAAAAAAkwBsAAAA+AAAA",
+              "ViewState": "AQIAACQAAAAAAAAAAAAiwDcAAAANAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-17T09:04:27.13Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-17T09:04:27.13Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 10,
               "Title": "UserParams.cs",
               "DocumentMoniker": "D:\\projects\\ChatRoom\\Api\\Models\\UserParams.cs",
               "RelativeDocumentMoniker": "Api\\Models\\UserParams.cs",
@@ -114,57 +168,29 @@
               "RelativeToolTip": "Api\\Models\\UserParams.cs",
               "ViewState": "AQIAAAYAAAAAAAAAAAAAAAgAAAArAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-17T08:59:03.001Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "BasePagination.cs",
-              "DocumentMoniker": "D:\\projects\\ChatRoom\\Api\\Models\\BasePagination.cs",
-              "RelativeDocumentMoniker": "Api\\Models\\BasePagination.cs",
-              "ToolTip": "D:\\projects\\ChatRoom\\Api\\Models\\BasePagination.cs",
-              "RelativeToolTip": "Api\\Models\\BasePagination.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAqwAwAAAAJAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-17T08:58:33.928Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-17T08:59:03.001Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 6,
-              "Title": "GetLikeParams.cs",
-              "DocumentMoniker": "D:\\projects\\ChatRoom\\Api\\Models\\GetLikeParams.cs",
-              "RelativeDocumentMoniker": "Api\\Models\\GetLikeParams.cs",
-              "ToolTip": "D:\\projects\\ChatRoom\\Api\\Models\\GetLikeParams.cs",
-              "RelativeToolTip": "Api\\Models\\GetLikeParams.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAvAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-17T08:55:56.546Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
               "Title": "ClaimsPrincipleExtension.cs",
               "DocumentMoniker": "D:\\projects\\ChatRoom\\Api\\extensions\\ClaimsPrincipleExtension.cs",
               "RelativeDocumentMoniker": "Api\\extensions\\ClaimsPrincipleExtension.cs",
               "ToolTip": "D:\\projects\\ChatRoom\\Api\\extensions\\ClaimsPrincipleExtension.cs",
               "RelativeToolTip": "Api\\extensions\\ClaimsPrincipleExtension.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAqwBIAAABSAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAAIAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-07-17T08:38:18.588Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-07-17T08:38:18.588Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
               "Title": "UserLikeController.cs",
               "DocumentMoniker": "D:\\projects\\ChatRoom\\Api\\Controllers\\UserLikeController.cs",
               "RelativeDocumentMoniker": "Api\\Controllers\\UserLikeController.cs",
               "ToolTip": "D:\\projects\\ChatRoom\\Api\\Controllers\\UserLikeController.cs",
               "RelativeToolTip": "Api\\Controllers\\UserLikeController.cs",
-              "ViewState": "AQIAABsAAAAAAAAAAAAgwC0AAAAmAAAA",
+              "ViewState": "AQIAABQAAAAAAAAAAAA4wC4AAAA6AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-07-17T08:26:07.263Z",
               "EditorCaption": ""

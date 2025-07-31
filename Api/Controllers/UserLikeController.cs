@@ -25,10 +25,11 @@ namespace Api.Controllers
         }
 
         [HttpPost("Add-Like")]
-        // [Authorize(Roles = "member")]
+         //[Authorize]
         public async Task<IActionResult> AddLike([FromQuery] string targetUserName)
         {
             var sourceUserId = User.GetUserId();
+            //var sourceUserId = 1012;
             var targetUser = await _userRepository.GetUserByUserName(targetUserName);
             if (targetUser == null) return NotFound("user not found");
             if (sourceUserId == targetUser.Id) return BadRequest("you cannot like yourSelf");
@@ -43,7 +44,7 @@ namespace Api.Controllers
         }
 
         [HttpGet("get-likes")]
-        public async Task<ActionResult<PagedList<LikeDto>>> GetUserLikes([FromQuery] GetLikeParams getLikeParams)
+        public async Task<ActionResult<PagedList<MemberDto>>> GetUserLikes([FromQuery] GetLikeParams getLikeParams)
         {
             return Ok(await _userLikeRepository.GetUserLIkes(getLikeParams, User.GetUserId()));
         }
