@@ -34,6 +34,9 @@ namespace Api.Entites
         public ICollection<UserLike>   SourceUserlikes{ get; set; }
         public ICollection<UserLike> TargetUserlikes { get; set; }
 
+        public ICollection<Message> MessageSent { get; set; }
+        public ICollection<Message> MessageReceived { get; set; }
+
         //get age
         public int GetAge()
         {

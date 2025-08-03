@@ -21,10 +21,11 @@ namespace Api.extensions
     {
          public static IServiceCollection  AddApplicationService(this IServiceCollection services , IConfiguration configuration)
          {
-                services.AddScoped<ITokenService , TokenService>();
-                services.AddScoped<IUserRepository , UserRepository>();
-                services.AddScoped<IAccountRepository, AccountRepository>();
+            services.AddScoped<ITokenService , TokenService>();
+            services.AddScoped<IUserRepository , UserRepository>();
+            services.AddScoped<IAccountRepository, AccountRepository>();
             services.AddScoped<IUserLikeRepository, UserLikeRepository>();
+            services.AddScoped<IMessageRepository, MessgeRepository>();
 
             services.AddAutoMapper(typeof(AutoMapperProfile).Assembly);
 

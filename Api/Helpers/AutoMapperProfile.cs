@@ -22,10 +22,10 @@ namespace API.Helpers
                  .ForMember(x => x.Age, c => c.MapFrom(v => v.GetAge()))
                  .ForMember(x => x.PictureUrl, c => c.MapFrom(v => v.Photos.FirstOrDefault(x => x.IsMain).Url));
             //message
-            //CreateMap<Message, MessageDto>()
-            //    .ForMember(x => x.ReceiverPhotoUrl, c => c.MapFrom(v => v.Receiver.Photos.FirstOrDefault(x => x.IsMain).Url))
-            //    .ForMember(x => x.SenderPhotoUrl, c => c.MapFrom(v => v.Sender.Photos.FirstOrDefault(x => x.IsMain).Url));
-            //CreateMap<MessageDto, Message>();
+            CreateMap<Message, MessageDto>()
+                .ForMember(x => x.ReceiverPhotoUrl, c => c.MapFrom(v => v.Receiver.Photos.FirstOrDefault(x => x.IsMain).Url))
+                .ForMember(x => x.SenderPhotoUrl, c => c.MapFrom(v => v.Senter.Photos.FirstOrDefault(x => x.IsMain).Url));
+            CreateMap<MessageDto, Message>();
         }
     }
 }
