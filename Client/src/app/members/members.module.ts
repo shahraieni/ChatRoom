@@ -9,10 +9,18 @@ import { SharedModule } from '../shared/shared.module';
 import { EditMemberComponent } from './edit-member/edit-member.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { PhotoEditComponent } from './photo-edit/photo-edit.component';
+import { MemberMessageComponent } from './message-member/message-member.component';
+
 
 
 @NgModule({
-  declarations: [ListMemberComponent,HomeMemberComponent,DetailMemberComponent, EditMemberComponent, PhotoEditComponent],
+  declarations: [ListMemberComponent,
+    HomeMemberComponent,
+    DetailMemberComponent,
+    EditMemberComponent,
+     PhotoEditComponent,
+     MemberMessageComponent
+    ],
   imports: [
     CommonModule,
     MembersRoutingModule,

@@ -1,1 +1,95 @@
-<h1>home-message works!</h1>
+<div class="row m-4">
+  <div class="btn-group">
+    <button class="btn btn-primary" (click)="changeContainer('Unread')">
+      <i class="fa fa-envelope"></i> Unread
+    </button>
+    <button class="btn btn-primary" (click)="changeContainer('Inbox')">
+      <i class="fa fa-envelope-open"></i> Inbox
+    </button>
+    <button class="btn btn-primary" (click)="changeContainer('Outbox')">
+      <i class="fa fa-paper-plane"></i> Outbox
+    </button>
+  </div>
+</div>
+<!-- no message -->
+<div
+  class="alert alert-danger d-flex align-items-center"
+  role="alert"
+  *ngIf="result?.items?.length === 0"
+>
+  <span class="fas fa-info m-2"></span>
+  <div>no message found</div>
+</div>
+<!-- have messages -->
+<div class="row" *ngIf="result?.items?.length > 0">
+  <table
+    class="table bg-white table-hover table-bordered"
+    style="cursor: pointer"
+  >
+    <thead>
+      <tr>
+        <th style="width: 40%">message</th>
+        <th style="width: 20%">From / To</th>
+        <th style="width: 20%">Sent / Received</th>
+        <th style="width: 20%"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr [hidden]="loading" *ngFor="let item of result?.items">
+        <td>{{ item?.content }}</td>
+        <td>
+          <!-- outbox -->
+          <div *ngIf="messageParams?.container === 'Outbox'">
+            <a
+              [routerLink]="['/members', item?.receiverUserName]"
+              [queryParams]="{ tab: '2' }"
+              routerLinkActive="router-link-active"
+            >
+              <img
+                class="img-ciecle rounded-circle mr-2 pr-5"
+                [src]="item?.receiverPhotoUrl || './assets/images/user.png'"
+                [alt]="item?.receiverUserName"
+              />
+              <strong>{{ item?.receiverUserName | titlecase }}</strong>
+            </a>
+          </div>
+          <!-- inbox -->
+          <div *ngIf="messageParams?.container !== 'Outbox'">
+            <a
+              [routerLink]="['/members', item?.senterUserName]"
+              [queryParams]="{ tab: '2' }"
+            >
+              <img
+                class="img-ciecle rounded-circle mr-2 pr-5"
+                [src]="item?.senderPhotoUrl || './assets/images/user.png'"
+                [alt]="item?.senterUserName"
+              />
+              <strong>{{ item?.senterUserName | titlecase }}</strong>
+            </a>
+          </div>
+        </td>
+        <td>{{ item?.messageSent | timeago }}</td>
+        <td>
+          <div class="btn-group">
+            <button class="btn btn-danger btn-sm">
+              <span class="fas fa-trash"></span>
+            </button>
+            <button class="btn btn-warning btn-sm">
+              <span class="fas fa-edit"></span>
+            </button>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<ng-container *ngIf="result?.totalCount > 0">
+  <div class="d-flex justify-content-center mt-3">
+    <pagination
+      [totalItems]="result?.totalCount"
+      [(ngModel)]="result.currentPage"
+      (pageChanged)="pageChanged($event)"
+    >
+    </pagination>
+  </div>
+</ng-container>

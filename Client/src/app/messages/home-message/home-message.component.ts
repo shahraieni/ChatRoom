@@ -1,10 +1,48 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { finalize } from 'rxjs';
+import { IMessage, MessageParams } from 'src/app/_model/message';
+import { PaginatedResult } from 'src/app/_model/pagination';
+import { MessageService } from 'src/app/_services/message.service';
 
 @Component({
   selector: 'app-home-message',
   templateUrl: './home-message.component.html',
   styleUrls: ['./home-message.component.css']
 })
-export class HomeMessageComponent {
+export class HomeMessageComponent implements OnInit {
+  messageParams : MessageParams;
+  result : PaginatedResult<IMessage[]>;
+  loading = false
+
+  constructor(private messageService : MessageService){
+     this.messageParams = this.messageService.getMessageParams();
+  }
+  ngOnInit(): void {
+    
+    this.loadMessages();
+  }
+
+
+    loadMessages() {
+    this.loading = true;
+    this.messageService
+      .getMassages(this.messageParams)
+      .pipe(finalize(() => (this.loading = false)))
+      .subscribe((response) => {
+        this.result = response;
+      });
+  }
+  changeContainer(container: string) {
+    this.messageParams.container = container;
+    this.messageService.setMessageParams(this.messageParams);
+    this.loadMessages();
+  }
+
+   pageChanged(event: any): void {
+    this.messageParams.pageNumber = event.page;
+    this.messageService.setMessageParams(this.messageParams);
+    this.loadMessages();
+  }
+
 
 }
