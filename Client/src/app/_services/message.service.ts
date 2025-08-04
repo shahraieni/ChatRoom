@@ -54,7 +54,7 @@ export class MessageService {
   }
 
   getMessageThread(userName :string){
-      return this.http.get<IMessage[]>(`${this.baseUrl}/Mssage/Thread/${userName}`)
+      return this.http.get<IMessage[]>(`${this.baseUrl}/Message/Thread/${userName}`)
   }
  
 }

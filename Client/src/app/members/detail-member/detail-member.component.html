@@ -50,8 +50,8 @@
             class="ngx-gallery d-inline-block mb-5"
           ></ngx-gallery>
         </tab>
-        <tab class="mt-3 p-2" heading="Messages" >
-          <app-message-member [userName]="member?.userName"></app-message-member>
+        <tab  (selectTab)="onTabChange($event)"  class="mt-3 p-2" heading="Messages" >
+          <app-message-member [messages]="messages"  [userName]="member.userName"></app-message-member>
         </tab>
       </tabset> 
     </div>

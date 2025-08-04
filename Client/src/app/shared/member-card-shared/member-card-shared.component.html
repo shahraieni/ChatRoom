@@ -9,7 +9,10 @@
                                     <i class="far fa-eye" ></i>
                         
                                 </button>
-                                 <button type="button"
+                                 <button 
+                                  [routerLink]="['/members' , member.userName]" 
+                                  [queryParams]="{tab : '2'}"
+                                  type="button"
                                     class="btn btn-sm btn-outline-secondary">
                                      <i class="far fa-comment-dots" ></i>
                                 </button> 
