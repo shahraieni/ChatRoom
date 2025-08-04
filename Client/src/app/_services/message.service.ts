@@ -44,6 +44,9 @@ export class MessageService {
   getMessageParams(){
     return this.messageParams;
   }
+  sendMessage(recipientUserName : string , content: string){
+    return  this.http.post<IMessage>(`${this.baseUrl}/message`,{content , recipientUserName})
+  }
 
   setMessageParams(messageParams : MessageParams){
     this.messageParams = messageParams;

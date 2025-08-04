@@ -28,7 +28,8 @@ namespace Api.Controllers
         [HttpPost]
         public async Task<ActionResult<MessageDto>> CreateMessage(CreateMessageDto createMessage)
         {
-            var currentUser = User.GetUserName();
+           // var currentUser = User.GetUserName();
+            var currentUser = "todd";
             if (currentUser == createMessage.RecipientUserName) return BadRequest("You cannat send message to yourself");
             var sender = await _userRepository.GetUserByUserName(currentUser);
             if (sender == null) return BadRequest(new ApiResponse(404,"Sender not found"));
@@ -66,8 +67,8 @@ namespace Api.Controllers
         [HttpGet("thread/{UserName}")]
         public async Task<ActionResult<IEnumerable<MessageDto>>> GetMessageThread(string userName)
         {
-          var currnetUserName = User.GetUserName();
-           // var currnetUserName = "test";
+         // var currnetUserName = User.GetUserName();
+           var currnetUserName = "todd";
             return Ok(await _messageRepository.GetMessageThread(currnetUserName, userName));
         }
     }
